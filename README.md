@@ -24,8 +24,8 @@ you find more details on how to install it from this git repo.
   >  rake check:package  # Check package code completness  
   >  rake check:syntax   # Check syntax of *.{rb,rake} files  
   >  rake console        # Start irb session with yast/rake loaded  
-  >  rake gen:spec       # Create 'spec/' directory and 'spec/spec_helper.rb' file
-  >  rake gen:test       # Create 'test/' directory and 'test/test_helper.rb' file
+  >  rake gen:spec       # Create 'spec/' and 'spec/spec_helper.rb'  
+  >  rake gen:test       # Create 'test/' and 'test/test_helper.rb'  
   >  rake install        # Install the yast code on the current system  
   >  rake package:info   # Meta information about the yast package  
   >  rake package:init   # Create a new yast package skeleton  
@@ -104,9 +104,9 @@ end
   default configs has been loaded.  
 
   Defining your custom config in namespace `Yast::Rake::Config` has the advantages of:  
-    * avoiding namespace collision
-    * in place registering right after the config module definition
-    * keeping Rakefile clean from custom code.
+    * avoiding namespace collision  
+    * in place registering right after the config module definition  
+    * keeping Rakefile clean from custom code.  
 
 
 ### Command example
