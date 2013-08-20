@@ -24,8 +24,8 @@ you find more details on how to install it from this git repo.
   >  rake check:package  # Check package code completness  
   >  rake check:syntax   # Check syntax of *.{rb,rake} files  
   >  rake console        # Start irb session with yast/rake loaded  
-  >  rake g:spec       # Create 'spec/' directory and 'spec/spec_helper.rb' file
-  >  rake g:test       # Create 'test/' directory and 'test/test_helper.rb' file
+  >  rake gen:spec       # Create 'spec/' directory and 'spec/spec_helper.rb' file
+  >  rake gen:test       # Create 'test/' directory and 'test/test_helper.rb' file
   >  rake install        # Install the yast code on the current system  
   >  rake package:info   # Meta information about the yast package  
   >  rake package:init   # Create a new yast package skeleton  
