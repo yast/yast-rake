@@ -200,9 +200,15 @@ end
   After that you have `Yast::Sysconfig` available in the main scope in irb.
 
   Run `rake console` and get the irb session:
-  >> Yast::Sysconfig.Summary # => Status text from sysconfig module
-  >> rake.config # => [ root, yast, package, console]
-  >> rake.config.root # => #<Pathname:/home/vmoravec/code/yast-rake>
+
+  ```ruby
+# If validation fails you will get error messages right after the start:
+# Package: Mandatory file '/home/vmoravec/Code/yast-rake/RPMNAME' not found.
+
+Yast::Sysconfig.Summary # => Status text from sysconfig module
+rake.config             # => [ root, yast, package, console]
+rake.config.root        # => #<Pathname:/home/vmoravec/code/yast-rake>
+  ```
 
 
 ## Todo
