@@ -28,13 +28,7 @@ module Yast
 
       def register mod, keep_module_name=true
         context_name = parse_module_name(mod)
-        if keep_module_name
-          context.remove(module_name, context_name)
-          context.add(module_name, mod, context_name)
-        else
-          context.remove_base(module_name, mod)
-          context.add_base(module_name, mod)
-        end
+        create_context(mod, context_name, keep_module_name) unless context[context_name]
       end
 
       def context
@@ -43,6 +37,19 @@ module Yast
 
       def get_module_context
         context[module_name]
+      end
+
+      private
+
+      def create_context mod, context_name, keep_module_name
+        if keep_module_name
+          context.remove(module_name, context_name)
+          context.add(module_name, mod, context_name)
+        else
+          context.remove_base(module_name, mod)
+          context.add_base(module_name, mod)
+        end
+        context[context_name]
       end
 
       def parse_module_name mod

@@ -119,7 +119,7 @@ module Yast::Rake::Command
     include FileUtils # no need to require 'fileutils' as they are already loaded
 
     def install
-      sh "rpm -i #{rake.config.package.name}-#{rake.config.package.version}.rpm"
+      system "rpm -i #{rake.config.package.name}-#{rake.config.package.version}.rpm"
       puts "Package has been install successfully"
     end
   end
@@ -149,7 +149,12 @@ end
   You should test your tasks, i.e. commands appropriately and make them a part of the 
   yast module testsuite. Getting the `rake` object is easy:
 
+  In `test/custom_command_test.rb` :
+
   ```ruby
+# This will also load your custom commands and configs in rake/configs and
+# rake/commands dirs after the defaults have been loaded.
+
 require 'yast/rake/test'
 
 attr_reader :rake
@@ -158,7 +163,6 @@ before do
   @rake = Object.new.extend(Yast::Rake::Test)
 end
 
-# we expect the custom code is located at rake/configs and rake/commands dirs
 describe "Your custom code"
   rake.config.must_respond_to :package
   rake.command.package.must_respond_to :install
@@ -175,6 +179,8 @@ end
   like importing some yast modules or setup some personal greetings :). The 
   hook expects a proc and it's empty by default, feel free to override it if needed.
 
+  In `rake/configs/console.rb`:
+
   ```ruby
 module Yast::Rake::Config
   module Console
@@ -190,6 +196,14 @@ module Yast::Rake::Config
   register Console
 end
   ```
+
+  After that you have `Yast::Sysconfig` available in the main scope in irb.
+
+  Run `rake console` and get the irb session:
+  >> Yast::Sysconfig.Summary # => Status text from sysconfig module
+  >> rake.config # => [ root, yast, package, console]
+  >> rake.config.root # => #<Pathname:/home/vmoravec/code/yast-rake>
+
 
 ## Todo
 
