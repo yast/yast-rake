@@ -37,8 +37,8 @@ task :"tarball" do
 end
 
 desc 'Install yast-rake gem package'
-task :install do
-  sh 'gem install yast-rake'
+task :install => :tarball do
+  sh 'gem install package/yast-rake*.gem'
 end
 
 Packaging::Configuration.run do |conf|
