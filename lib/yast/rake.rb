@@ -11,7 +11,7 @@ prerequisites.push("version:update_spec")
 
 task.enhance(prerequisites)
 
-Packaging::Configuration.run do |conf|
+Packaging.configuration do |conf|
   conf.obs_project = "YaST:Head"
   conf.obs_sr_project = "openSUSE:Factory"
   conf.package_name = File.read("RPMNAME").strip if File.exists?("RPMNAME")
