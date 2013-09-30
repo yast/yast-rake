@@ -24,7 +24,7 @@ namespace :version do
   task :bump do
     version_parts = version.split(".")
     version_parts[-1] = (version_parts.last.to_i + 1).to_s
-    File.write("VERSION", version_parts.join("."))
+    File.write("VERSION", version_parts.join(".") + "\n")
     Rake::Task["version:update_spec"].execute
   end
 
