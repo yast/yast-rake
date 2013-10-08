@@ -41,7 +41,7 @@ task :install => :tarball do
   sh 'gem install package/yast-rake*.gem'
 end
 
-Packaging.configuration do |conf|
+Yast::Tasks.configuration do |conf|
   conf.package_name = "rubygem-yast-rake"
 end
 # vim: ft=ruby
