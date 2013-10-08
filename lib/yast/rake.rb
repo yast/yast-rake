@@ -17,6 +17,15 @@
 #++
 require "packaging"
 
+#create wrapper to Packaging Configuration
+module Yast
+  module Tasks
+    def self.configuration &block
+      ::Packaging.configuration &block
+    end
+  end
+end
+
 # yast integration testing takes too long and require osc:build so it create
 # circle, so replace test dependency with test:unit
 task = Rake::Task["package"]
@@ -28,7 +37,7 @@ prerequisites.push("version:update_spec")
 
 task.enhance(prerequisites)
 
-Packaging.configuration do |conf|
+Yast::Tasks.configuration do |conf|
   conf.obs_project = "YaST:Head"
   conf.obs_sr_project = "openSUSE:Factory"
   conf.package_name = File.read("RPMNAME").strip if File.exists?("RPMNAME")
@@ -39,3 +48,4 @@ task_path = File.expand_path("../../tasks", __FILE__)
 Dir["#{task_path}/*.rake"].each do |f|
   load f
 end
+
