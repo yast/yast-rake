@@ -31,7 +31,6 @@ end
 task = Rake::Task["package"]
 prerequisites = task.prerequisites
 prerequisites.delete("test")
-prerequisites.push("test:unit")
 # ensure we have proper version in spec
 prerequisites.push("version:update_spec")
 
