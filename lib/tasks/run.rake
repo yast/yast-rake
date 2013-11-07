@@ -21,23 +21,24 @@ def set_y2dir
 end
 
 desc "Run given client"
-task :run, :client do |t,args|
+task :run, :client do |t, args|
   args.with_defaults = { :client => nil }
-  if args[:client]
-    args[:client] = Dir["**/src/clients/#{args[:client]}.rb"].first
+  client = args[:client]
+  if client
+    client = Dir["**/src/clients/#{client}.rb"].first
   else
     clients = Dir["**/src/clients/*.rb"]
-    args[:client] = clients.reduce do |min, n|
+    client = clients.reduce do |min, n|
       next n if min.nil?
       # use client with shortest name by default
       min.size > n.size ? n : min
     end
   end
 
-  raise "No client found" unless args[:client]
+  raise "No client found" unless client
 
   set_y2dir
-  sh "/sbin/yast2 #{args[:client]}"
+  sh "/sbin/yast2 #{client}"
 end
 
 desc "Runs console with preloaded module directories"
