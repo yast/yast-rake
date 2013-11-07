@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Thu Nov  7 10:20:46 UTC 2013 - mvidner@suse.com
+
+- Fixed `rake run` to work and `rake run[foo]` to really use
+  the local files.
+- 0.1.4
+
+-------------------------------------------------------------------
 Fri Oct 25 10:32:12 UTC 2013 - jreidinger@suse.com
 
 - Run test:unit even for nested test directories
