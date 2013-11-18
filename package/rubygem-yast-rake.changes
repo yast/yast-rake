@@ -1,4 +1,25 @@
 -------------------------------------------------------------------
+Thu Nov  7 10:20:46 UTC 2013 - mvidner@suse.com
+
+- Fixed `rake run` to work and `rake run[foo]` to really use
+  the local files.
+- 0.1.4
+
+-------------------------------------------------------------------
+Fri Oct 25 10:32:12 UTC 2013 - jreidinger@suse.com
+
+- Run test:unit even for nested test directories
+  (gh#yast/yast-rake#2)
+- 0.1.3
+
+-------------------------------------------------------------------
+Mon Oct 14 08:10:49 UTC 2013 - jreidinger@suse.com
+
+- do not run test before packaging as it is runned in osc:build
+  during rpm build
+- 0.1.2
+
+-------------------------------------------------------------------
 Thu Sep 19 14:06:10 UTC 2013 - jreidinger@suse.com
 
 - initial version

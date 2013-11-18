@@ -17,7 +17,7 @@
 
 
 Name:           rubygem-yast-rake
-Version:        0.1.0
+Version:        0.1.4
 Release:        0
 %define mod_name yast-rake
 %define mod_full_name %{mod_name}-%{version}
@@ -59,6 +59,7 @@ Usually in RDoc and RI formats.
 %{_libdir}/ruby/gems/%{rb_ver}/cache/%{mod_full_name}.gem
 %{_libdir}/ruby/gems/%{rb_ver}/gems/%{mod_full_name}/
 %{_libdir}/ruby/gems/%{rb_ver}/specifications/%{mod_full_name}.gemspec
+%doc %{_libdir}/ruby/gems/%{rb_ver}/gems/%{mod_full_name}/COPYING
 
 %files doc
 %defattr(-,root,root,-)
