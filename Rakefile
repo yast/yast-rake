@@ -41,6 +41,27 @@ task :install => :tarball do
   sh 'sudo gem install package/yast-rake*.gem'
 end
 
+# this gem uses VERSION file, replace the standard yast implementation
+Rake::Task[:'version:bump'].clear
+
+namespace :version do
+  task :bump do
+    # update VERSION
+    version_parts = File.read("VERSION").strip.split(".")
+    version_parts[-1] = (version_parts.last.to_i + 1).to_s
+    new_version = version_parts.join(".")
+
+    puts "Updating to #{new_version}"
+    File.write("VERSION", new_version + "\n")
+
+    # update *.spec file
+    spec_file = "package/rubygem-yast-rake.spec"
+    spec = File.read(spec_file)
+    spec.gsub!(/^\s*Version:.*$/, "Version:        #{new_version}")
+    File.write(spec_file, spec)
+  end
+end
+
 Yast::Tasks.configuration do |conf|
   conf.package_name = "rubygem-yast-rake"
 end

@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Mon Dec  9 09:25:59 UTC 2013 - lslezak@suse.cz
+
+- read the version number directly from *.spec file (ignore VERSION
+  files), adapted "version:bump" task, removed
+  "version:update_spec" task (not needed anymore)
+- 0.1.5
+
+-------------------------------------------------------------------
 Thu Nov  7 10:20:46 UTC 2013 - mvidner@suse.com
 
 - Fixed `rake run` to work and `rake run[foo]` to really use
