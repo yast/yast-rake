@@ -17,19 +17,23 @@
 #++
 namespace :version do
   def version
-    File.read("VERSION").strip
+    Yast::Tasks.spec_version
   end
 
-  desc "Increase last part of version of file and propagate change with update_spec"
+  desc "Increase the last part of version in package/*.spec files"
   task :bump do
     version_parts = version.split(".")
     version_parts[-1] = (version_parts.last.to_i + 1).to_s
-    File.write("VERSION", version_parts.join(".") + "\n")
-    Rake::Task["version:update_spec"].execute
-  end
+    new_version = version_parts.join(".")
 
-  desc "Propagate version from VERSION file to rpm spec file"
-  task :update_spec do
-    sh "sed -i 's/\\(^Version:[[:space:]]*\\)[0-9.]\\+/\\1#{version}/' package/*.spec"
+    puts "Updating version to #{new_version}"
+
+    # update all present *.spec files
+    Dir.glob("package/*.spec").each do |spec_file|
+      spec = File.read(spec_file)
+      spec.gsub!(/^\s*Version:.*$/, "Version:        #{new_version}")
+
+      File.write(spec_file, spec)
+    end
   end
 end

@@ -23,6 +23,14 @@ module Yast
     def self.configuration &block
       ::Packaging.configuration &block
     end
+
+    # read the version from spec file
+    def self.spec_version
+      # use the first *.spec file found, assume all spec files
+      # contain the same version
+      File.readlines(Dir.glob("package/*.spec").first)
+        .grep(/^\s*Version:\s*/).first.sub("Version:", "").strip
+    end
   end
 end
 
@@ -31,8 +39,6 @@ end
 task = Rake::Task["package"]
 prerequisites = task.prerequisites
 prerequisites.delete("test")
-# ensure we have proper version in spec
-prerequisites.push("version:update_spec")
 
 task.enhance(prerequisites)
 
@@ -40,6 +46,7 @@ Yast::Tasks.configuration do |conf|
   conf.obs_project = "YaST:Head"
   conf.obs_sr_project = "openSUSE:Factory"
   conf.package_name = File.read("RPMNAME").strip if File.exists?("RPMNAME")
+  conf.version = Yast::Tasks.spec_version
 end
 
 # load own tasks
