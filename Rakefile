@@ -38,7 +38,7 @@ end
 
 desc 'Install yast-rake gem package'
 task :install => :tarball do
-  sh 'gem install package/yast-rake*.gem'
+  sh 'sudo gem install package/yast-rake*.gem'
 end
 
 Yast::Tasks.configuration do |conf|
