@@ -1,0 +1,71 @@
+#--
+# Yast rake
+#
+# Copyright (C) 2014 Novell, Inc.
+#   This library is free software; you can redistribute it and/or modify
+# it only under the terms of version 2.1 of the GNU Lesser General Public
+# License as published by the Free Software Foundation.
+#
+#   This library is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
+#
+#   You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+#++
+
+require "packaging/configuration"
+
+module Packaging
+  # extend configuration with install locations
+  class Configuration
+    attr_writer :install_locations
+
+    DESTDIR = ENV['DESTDIR'] || '/'
+    YAST_DIR = DESTDIR + '/usr/share/YaST2/'
+    YAST_LIB_DIR = DESTDIR + '/usr/lib/YaST2/'
+    YAST_DESKTOP_DIR = DESTDIR + '/usr/share/applications/YaST2/'
+    AUTOYAST_RNC_DIR = YAST_DIR + 'schema/autoyast/rnc/'
+    FILLUP_DIR = DESTDIR + '/var/adm/fillup-templates/'
+
+
+    #specific directory that contain dynamic part of package name
+    def install_doc_dir
+    end
+
+    # Gets installation locations. Hash contain glob as keys and target
+    # directory as values. Each found file/directory from glob is passed
+    # to FileUtils.cp_r as source and value as destination
+    def install_locations
+      @install_locations ||= {
+        "**/src/clients"           => YAST_DIR,
+        "**/src/modules"           => YAST_DIR,
+        "**/src/include"           => YAST_DIR,
+        "**/src/lib"               => YAST_DIR,
+        "**/src/scrconf"           => YAST_DIR,
+        "**/src/servers_non_y2"    => YAST_LIB_DIR,
+        "**/src/bin"               => YAST_LIB_DIR,
+        "**/src/autoyast_rnc/*"    => AUTOYAST_RNC_DIR,
+        "**/src/fillup/*"          => FILLUP_DIR,
+        "**/src/desktop/*.desktop" => YAST_DESKTOP
+      }
+    end
+  end
+end
+
+desc "Install to system"
+task :install do
+  config = ::Packaging::Configuration.instance
+  config.install_locations.each_pair do |glob, install_to|
+    Dir[glob].each do |source|
+      begin
+        FileUtils.mkdir_p(install_to, :verbose => true) unless File.directory?(install_to)
+        FileUtils.cp_r(source, install_to, :verbose => true)
+      rescue => e
+        raise "Cannot instal file #{source} to #{install_to}: #{e.message}"
+      end
+    end
+  end
+end
