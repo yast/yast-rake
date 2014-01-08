@@ -14,10 +14,7 @@ Now lets check what it provides with `rake -T`
 # Provided tasks
 
 ## version:bump
-Update the latest part of version in VERSION file and sync it also to spec file.
-
-## version:update\_spec
-Synchronize version in VERSION file to spec file.
+Update the latest part of version in spec file.
 
 ## test:unit
 Runs all rspec tests ending with \_spec.rb or \_test.rb.
