@@ -6,9 +6,9 @@ Rake tasks to help with uniform handling of yast modules. It provides setup for
 # Quick Start
 
 Create Rakefile with content:
-
+```
   require "yast/rake"
-
+```
 Now lets check what it provides with `rake -T`
 
 # Provided tasks
