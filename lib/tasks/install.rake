@@ -49,7 +49,7 @@ module Packaging
         "**/src/bin"               => YAST_LIB_DIR,
         "**/src/autoyast_rnc/*"    => AUTOYAST_RNC_DIR,
         "**/src/fillup/*"          => FILLUP_DIR,
-        "**/src/desktop/*.desktop" => YAST_DESKTOP
+        "**/src/desktop/*.desktop" => YAST_DESKTOP_DIR
       }
     end
   end
