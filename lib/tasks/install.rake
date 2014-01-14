@@ -33,6 +33,7 @@ module Packaging
 
     #specific directory that contain dynamic part of package name
     def install_doc_dir
+      DESTDIR + "/usr/share/doc/packages/#{package_name}/"
     end
 
     # Gets installation locations. Hash contain glob as keys and target
@@ -40,16 +41,17 @@ module Packaging
     # to FileUtils.cp_r as source and value as destination
     def install_locations
       @install_locations ||= {
-        "**/src/clients"           => YAST_DIR,
-        "**/src/modules"           => YAST_DIR,
-        "**/src/include"           => YAST_DIR,
-        "**/src/lib"               => YAST_DIR,
-        "**/src/scrconf"           => YAST_DIR,
-        "**/src/servers_non_y2"    => YAST_LIB_DIR,
-        "**/src/bin"               => YAST_LIB_DIR,
-        "**/src/autoyast_rnc/*"    => AUTOYAST_RNC_DIR,
-        "**/src/fillup/*"          => FILLUP_DIR,
-        "**/src/desktop/*.desktop" => YAST_DESKTOP_DIR
+        "**/src/clients"                    => YAST_DIR,
+        "**/src/modules"                    => YAST_DIR,
+        "**/src/include"                    => YAST_DIR,
+        "**/src/lib"                        => YAST_DIR,
+        "**/src/scrconf"                    => YAST_DIR,
+        "**/src/servers_non_y2"             => YAST_LIB_DIR,
+        "**/src/bin"                        => YAST_LIB_DIR,
+        "**/src/autoyast_rnc/*"             => AUTOYAST_RNC_DIR,
+        "**/src/fillup/*"                   => FILLUP_DIR,
+        "**/src/desktop/*.desktop"          => YAST_DESKTOP_DIR,
+        "{README*,COPYING,CONTRIBUTING.md}" => install_doc_dir,
       }
     end
   end
@@ -59,10 +61,11 @@ desc "Install to system"
 task :install do
   config = ::Packaging::Configuration.instance
   config.install_locations.each_pair do |glob, install_to|
+    FileUtils.mkdir_p(install_to, :verbose => true) unless File.directory?(install_to)
     Dir[glob].each do |source|
       begin
-        FileUtils.mkdir_p(install_to, :verbose => true) unless File.directory?(install_to)
-        FileUtils.cp_r(source, install_to, :verbose => true)
+        # do not use FileUtils.cp_r as it have different behavior if target exists
+        sh "cp -r '#{source}' '#{install_to}'"
       rescue => e
         raise "Cannot instal file #{source} to #{install_to}: #{e.message}"
       end
