@@ -36,6 +36,8 @@ task :"tarball" do
   mv "yast-rake-#{version}.gem", "package"
 end
 
+#remove install implementation and install via gem
+Rake::Task[:install].clear
 desc 'Install yast-rake gem package'
 task :install => :tarball do
   sh 'sudo gem install package/yast-rake*.gem'
