@@ -64,7 +64,8 @@ task :install do
     FileUtils.mkdir_p(install_to, :verbose => true) unless File.directory?(install_to)
     Dir[glob].each do |source|
       begin
-        # do not use FileUtils.cp_r as it have different behavior if target exists
+        # do not use FileUtils.cp_r as it have different behavior if target
+        # exists and we copy a symlink
         sh "cp -r '#{source}' '#{install_to}'"
       rescue => e
         raise "Cannot instal file #{source} to #{install_to}: #{e.message}"
