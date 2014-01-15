@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Wed Jan 15 14:03:18 UTC 2014 - jreidinger@suse.com
+
+- Add "install" task for installation to proper location
+- 0.1.6
+
+-------------------------------------------------------------------
 Mon Dec  9 09:25:59 UTC 2013 - lslezak@suse.cz
 
 - read the version number directly from *.spec file (ignore VERSION
