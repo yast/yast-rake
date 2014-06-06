@@ -46,6 +46,7 @@ module Packaging
         "**/src/include"                    => YAST_DIR,
         "**/src/lib"                        => YAST_DIR,
         "**/src/scrconf"                    => YAST_DIR,
+        "**/src/data"                       => YAST_DIR,
         "**/src/servers_non_y2"             => YAST_LIB_DIR,
         "**/src/bin"                        => YAST_LIB_DIR,
         "**/src/autoyast_rnc/*"             => AUTOYAST_RNC_DIR,
