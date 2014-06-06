@@ -17,14 +17,14 @@
 
 
 Name:           rubygem-yast-rake
-Version:        0.1.6
+Version:        0.1.7
 Release:        0
 %define mod_name yast-rake
 %define mod_full_name %{mod_name}-%{version}
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  ruby-macros >= 1
-Url:            http://github.org/openSUSE/yast-rake
+Url:            http://github.org/yast/yast-rake
 Source:         http://rubygems.org/gems/%{mod_full_name}.gem
 Summary:        Rake tasks providing basic work-flow for Yast development
 License:        LGPL v2.1
