@@ -49,7 +49,7 @@ module Packaging
         "**/src/data"                       => YAST_DIR,
         "**/src/servers_non_y2"             => YAST_LIB_DIR,
         "**/src/bin"                        => YAST_LIB_DIR,
-        "**/src/autoyast_rnc/*"             => AUTOYAST_RNC_DIR,
+        "**/src/autoyast[_-]rnc/*"          => AUTOYAST_RNC_DIR,
         "**/src/fillup/*"                   => FILLUP_DIR,
         "**/src/desktop/*.desktop"          => YAST_DESKTOP_DIR,
         "{README*,COPYING,CONTRIBUTING.md}" => install_doc_dir,
