@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Mon Jun  9 07:38:51 UTC 2014 - jreidinger@suse.com
+
+- install: Fix matching for autoyast-rnc directory
+- 0.1.8
+
+-------------------------------------------------------------------
 Fri Jun  6 13:41:03 CEST 2014 - locilka@suse.com
 
 - Added support for Yast "data" directory
