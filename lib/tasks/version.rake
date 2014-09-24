@@ -29,9 +29,17 @@ namespace :version do
     puts "Updating version to #{new_version}"
 
     # update all present *.spec files
-    Dir.glob("package/*.spec").each do |spec_file|
+    Dir.glob("package/*.{spec,dsc}").each do |spec_file|
       spec = File.read(spec_file)
-      spec.gsub!(/^\s*Version:.*$/, "Version:        #{new_version}")
+      replacement = case spec_file
+      when /spec$/
+        "Version:        #{new_version}"
+      when /dsc$/
+        "Version: #{new_version}-1"
+      else
+        raise "unexpect file name #{spec_file}"
+      end
+      spec.gsub!(/^\s*Version:.*$/, replacement )
 
       File.write(spec_file, spec)
     end
