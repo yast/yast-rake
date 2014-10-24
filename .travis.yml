@@ -1,10 +1,8 @@
 language: ruby
-rvm:
-  - "2.1.0"
 before_install:
     - gem install packaging_rake_tasks
 script:
     - rake test:unit
     - rake tarball
-    - sudo rake install
+    - gem install package/yast-rake*.gem
 
