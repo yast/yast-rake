@@ -1,0 +1,8 @@
+language: ruby
+before_install:
+    - gem install packaging_rake_tasks
+script:
+    - rake test:unit
+    - rake tarball
+    - gem install package/yast-rake*.gem
+
