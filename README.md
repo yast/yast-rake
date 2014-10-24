@@ -1,5 +1,9 @@
 # Yast::Rake
 
+[![Travis Build](https://travis-ci.org/yast/yast-rake.svg?branch=master)](https://travis-ci.org/yast/yast-rake)
+[![Jenkins Build](http://img.shields.io/jenkins/s/https/ci.opensuse.org/yast-rake-master.svg)](https://ci.opensuse.org/view/Yast/job/yast-rake-master/)
+
+
 Rake tasks to help with uniform handling of yast modules. It provides setup for
 [packaging tasks](http://github.com/openSUSE/packaging_tasks) and add yast specific tasks.
 
