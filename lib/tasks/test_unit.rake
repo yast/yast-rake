@@ -1,8 +1,7 @@
 namespace :test do
   desc "Runs unit tests."
   task "unit" do
-    Dir["**/test/**/*_{spec,test}.rb"].each do |f|
-      sh "rspec --color --format doc '#{f}'"
-    end
+    files = Dir["**/test/**/*_{spec,test}.rb"]
+    sh "rspec --color --format doc '#{files.join("' '")}'" unless files.empty?
   end
 end

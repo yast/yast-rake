@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Wed Oct 29 10:02:46 UTC 2014 - jreidinger@suse.com
+
+- test:unit: run all tests in single run (gh#yast/yast-rake#11)
+- 0.1.9
+
+-------------------------------------------------------------------
 Mon Jun  9 07:38:51 UTC 2014 - jreidinger@suse.com
 
 - install: Fix matching for autoyast-rnc directory
