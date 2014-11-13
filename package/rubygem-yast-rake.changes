@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Thu Nov 13 09:26:46 UTC 2014 - lslezak@suse.cz
+
+- new tasks:
+  - "pot" - collect translatable strings and create *.pot files
+  - "check:pot" - check for common mistakes in translations
+- 0.1.10
+
+-------------------------------------------------------------------
 Wed Oct 29 10:02:46 UTC 2014 - jreidinger@suse.com
 
 - test:unit: run all tests in single run (gh#yast/yast-rake#11)
