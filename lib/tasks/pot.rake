@@ -18,7 +18,10 @@
 
 desc "Collect translatable strings and create POT files"
 task :pot do
-  sh "/usr/bin/y2tool y2makepot"
+  y2tool = "/usr/bin/y2tool"
+  raise "File #{y2tool} is missing, install yast2-devtools" unless File.exist?(y2tool)
+
+  sh "#{y2tool} y2makepot"
 end
 
 namespace :check do
