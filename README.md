@@ -29,6 +29,12 @@ installation.
 ## console
 Runs ruby console with paths leading to git and Yast environment.
 
+## pot
+Collect translatable strings and create `*.pot` files.
+
+## check:pot
+Check for common mistakes in translated texts.
+
 # Contributing
 
 1. Fork it
