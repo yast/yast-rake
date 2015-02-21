@@ -1,0 +1,38 @@
+# This is the global custom dictionary shared with all YaST repositories.
+#
+# Write the words in alphabetical order, one word per line.
+# If an unknown word is not generic put it into the repository specific dictionary.
+#
+API
+bnc
+boolean
+Bugzilla
+DHCP
+freenode
+gh
+GitHub
+GitHub's
+IRC
+LDAP
+NCurses
+NFS
+NIS
+openSUSE
+osc
+Rakefile
+rb
+refactorings
+RSpec
+runlevel
+SCR
+SLP
+SUSE
+systemd
+testsuite
+UI
+WFM
+workflow
+yast
+YaST
+ycp
+YCP

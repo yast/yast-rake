@@ -20,14 +20,14 @@ Now lets check what it provides with `rake -T`
 Update the latest part of version in spec file.
 
 ## test:unit
-Runs all rspec tests ending with \_spec.rb or \_test.rb.
+Runs all RSpec tests ending with \_spec.rb or \_test.rb.
 
 ## run[client]
-Runs client with paths leading to git. Usefull to testing module without
+Runs client with paths leading to git. Useful to testing module without
 installation.
 
 ## console
-Runs ruby console with paths leading to git and Yast environment.
+Runs ruby console with paths leading to git and YaST environment.
 
 ## pot
 Collect translatable strings and create `*.pot` files.
