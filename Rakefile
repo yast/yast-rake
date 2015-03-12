@@ -40,7 +40,7 @@ end
 Rake::Task[:install].clear
 desc 'Install yast-rake gem package'
 task :install => :tarball do
-  sh 'sudo gem install package/yast-rake*.gem'
+  sh 'sudo gem install --local package/yast-rake*.gem'
 end
 
 # this gem uses VERSION file, replace the standard yast implementation
