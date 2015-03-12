@@ -11,11 +11,11 @@
 # The lines starting with '#' character are ignored (used for comments),
 #
 
-CUSTOM_DICTIONARY_FILE = ".spell.dict"
+CUSTOM_DICTIONARY_FILE = "spell.dict"
 
 # read the global and the repository custom dictionary
 def read_custom_words
-  # read the glodefault custom dictionary
+  # read the global default custom dictionary
   dict_path = File.expand_path("../#{CUSTOM_DICTIONARY_FILE}", __FILE__)
   custom_words = File.read(dict_path).split("\n")
 
@@ -30,36 +30,38 @@ def read_custom_words
   # remove duplicates
   custom_words.uniq!
 
-  custom_words  
+  custom_words
+end
+
+def aspell_speller
+  # raspell is an optional dependency, handle the missing case nicely
+  begin
+    require "raspell"
+  rescue LoadError
+    $stderr.puts "ERROR: Ruby gem \"raspell\" is not installed."
+    exit 1
+  end
+
+  # initialize aspell
+  speller = Aspell.new("en_US")
+  speller.suggestion_mode = Aspell::NORMAL
+  # ignore the HTML tags in the text
+  speller.set_option("mode", "html")
+
+  speller
 end
 
 namespace :check do
   desc "Run spell checker (by default for *.md and *.html files in Git)"
   task :spelling, :regexp do |t, args|
-
-    DEFAULT_SPELLCHECK_REGEXP = /\.(md|html)\z/
-
-    # raspell is an optional dependency, handle the missing case nicely
-    begin
-      require "raspell"
-    rescue LoadError
-      $stderr.puts "ERROR: Ruby gem \"raspell\" is not installed."
-      exit 1
-    end
-
-    # initialize aspell
-    speller = Aspell.new("en_US")
-    speller.suggestion_mode = Aspell::NORMAL
-    # ignore the HTML tags in the text
-    speller.set_option("mode", "html")
-
-    regexp = args[:regexp] || DEFAULT_SPELLCHECK_REGEXP
+    regexp = args[:regexp] || /\.(md|html)\z/
     success = true
 
     files = `git ls-files . | grep -v \\.gitignore`.split("\n")
     files.select!{|file| file.match(regexp)}
 
     custom_words = read_custom_words
+    speller = aspell_speller
 
     files.each do |file|
       puts "Checking #{file}..." if verbose == true
