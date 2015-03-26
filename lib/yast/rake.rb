@@ -39,7 +39,6 @@ end
 task = Rake::Task["package"]
 prerequisites = task.prerequisites
 prerequisites.delete("test")
-prerequisites << "check:spelling"
 
 task.enhance(prerequisites)
 
