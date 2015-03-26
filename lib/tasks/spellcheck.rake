@@ -11,7 +11,8 @@
 # The lines starting with '#' character are ignored (used for comments),
 #
 
-CUSTOM_DICTIONARY_FILE = "spell.dict"
+GLOBAL_DICTIONARY_FILE = "spell.dict"
+CUSTOM_DICTIONARY_FILE = ".spell.dict"
 
 def read_dictionary_file(file)
   puts "Loading custom dictionary (#{file})..." if verbose == true
@@ -25,11 +26,11 @@ end
 # read the global and the repository custom dictionary
 def read_custom_words
   # read the global default custom dictionary
-  dict_path = File.expand_path("../#{CUSTOM_DICTIONARY_FILE}", __FILE__)
+  dict_path = File.expand_path("../#{GLOBAL_DICTIONARY_FILE}", __FILE__)
   custom_words = read_dictionary_file(dict_path)
 
   # read the custom dictionary from the project directory if present
-  dict_path = "." + CUSTOM_DICTIONARY_FILE
+  dict_path = CUSTOM_DICTIONARY_FILE
   if File.exist?(dict_path)
     local_dict = read_dictionary_file(dict_path)
     duplicates = custom_words & local_dict
