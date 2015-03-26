@@ -13,22 +13,35 @@
 
 CUSTOM_DICTIONARY_FILE = "spell.dict"
 
+def read_dictionary_file(file)
+  puts "Loading custom dictionary (#{file})..." if verbose == true
+  words = File.read(file).split("\n")
+
+  # remove comments
+  words.reject! { |word| word.start_with?("#")}
+  words.each(&:chomp!)
+end
+
 # read the global and the repository custom dictionary
 def read_custom_words
   # read the global default custom dictionary
   dict_path = File.expand_path("../#{CUSTOM_DICTIONARY_FILE}", __FILE__)
-  custom_words = File.read(dict_path).split("\n")
+  custom_words = read_dictionary_file(dict_path)
 
-  if File.exist?(CUSTOM_DICTIONARY_FILE)
-    puts "Loading custom dictionary (#{CUSTOM_DICTIONARY_FILE})..." if verbose == true
-    # read the custom dictionary from the project directory
-    custom_words += File.read(CUSTOM_DICTIONARY_FILE).split("\n")
+  # read the custom dictionary from the project directory if present
+  dict_path = CUSTOM_DICTIONARY_FILE
+  if File.exist?(dict_path)
+    local_dict = read_dictionary_file(dict_path)
+    duplicates = custom_words & local_dict
+
+    if !duplicates.empty?
+      $stderr.puts "Warning: Found duplicates in the local dictionary (#{dict_path}):\n"
+      duplicates.each {|duplicate| $stderr.puts "  #{duplicate}" }
+      $stderr.puts
+    end
+
+    custom_words += local_dict - duplicates
   end
-
-  # remove comments
-  custom_words.reject! { |word| word.start_with?("#")}
-  # remove duplicates
-  custom_words.uniq!
 
   custom_words
 end
