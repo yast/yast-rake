@@ -36,7 +36,7 @@ from git repo.
 end
 
 # gem content
-spec.files   = Dir["lib/**/*.rb", "lib/tasks/.spell.dict", "lib/tasks/*.rake",
+spec.files   = Dir["lib/**/*.rb", "lib/tasks/spell.dict", "lib/tasks/*.rake",
     "COPYING", "VERSION"]
 
 # define LOAD_PATH
