@@ -1,8 +1,7 @@
 -------------------------------------------------------------------
 Thu Mar 26 14:08:51 UTC 2015 - lslezak@suse.cz
 
-- added check:spelling task
-- fixed packaging
+- fixed gem packaging (missing "lib/tasks/spell.dict" file)
 - 0.2.1
 
 -------------------------------------------------------------------
@@ -13,7 +12,7 @@ Wed Mar 11 20:02:42 UTC 2015 - lslezak@suse.cz
   dependency)
 - do not crash when there is no "package/*.spec" file (e.g.
   in yast.github.io repository)
-- 0.1.11
+- 0.2.0
 
 -------------------------------------------------------------------
 Thu Nov 13 09:26:46 UTC 2014 - lslezak@suse.cz
