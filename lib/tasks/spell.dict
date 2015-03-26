@@ -29,6 +29,7 @@ RSpec
 runlevel
 SCR
 SLP
+sudo
 SUSE
 systemd
 testsuite
@@ -39,3 +40,4 @@ yast
 YaST
 ycp
 YCP
+zypper

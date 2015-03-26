@@ -29,7 +29,7 @@ def read_custom_words
   custom_words = read_dictionary_file(dict_path)
 
   # read the custom dictionary from the project directory if present
-  dict_path = CUSTOM_DICTIONARY_FILE
+  dict_path = "." + CUSTOM_DICTIONARY_FILE
   if File.exist?(dict_path)
     local_dict = read_dictionary_file(dict_path)
     duplicates = custom_words & local_dict
