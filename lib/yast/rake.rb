@@ -47,6 +47,7 @@ Yast::Tasks.configuration do |conf|
   conf.obs_sr_project = "openSUSE:Factory"
   conf.package_name = File.read("RPMNAME").strip if File.exists?("RPMNAME")
   conf.version = Yast::Tasks.spec_version if !Dir.glob("package/*.spec").empty?
+  conf.skip_license_check << /spell.dict$/ # skip license check for spelling dictionaries
 end
 
 # load own tasks
