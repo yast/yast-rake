@@ -20,20 +20,37 @@ Now lets check what it provides with `rake -T`
 Update the latest part of version in spec file.
 
 ## test:unit
-Runs all rspec tests ending with \_spec.rb or \_test.rb.
+Runs all RSpec tests ending with \_spec.rb or \_test.rb.
 
 ## run[client]
-Runs client with paths leading to git. Usefull to testing module without
+Runs client with paths leading to git. Useful to testing module without
 installation.
 
 ## console
-Runs ruby console with paths leading to git and Yast environment.
+Runs ruby console with paths leading to git and YaST environment.
 
 ## pot
 Collect translatable strings and create `*.pot` files.
 
 ## check:pot
 Check for common mistakes in translated texts.
+
+## check:spelling
+Checks spelling in `*.md` and `*.html` files. It uses a global custom dictionary
+(file `lib/tasks/spell.dict` in this repository) and supports repository specific
+dictionary (`spell.dict` file in the repository root directory).
+
+**Note:** The installed aspell English dictionary may differ in different products
+(esp. the Ubuntu dictionary used at Travis - a local check may pass, but it may
+later fail at Travis, be prepared for this...)
+
+**Note:** You need to explicitly install `aspell-devel`, `aspell-en`, `ruby-devel`
+packages and the `raspell` Ruby gem. (The reason is to decrease the dependencies
+for the packages which do not use this task.)
+
+These commands should work:
+    sudo zypper in aspell-devel aspell-en ruby-devel
+    sudo gem install raspell
 
 # Contributing
 

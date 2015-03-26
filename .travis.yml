@@ -1,8 +1,9 @@
 language: ruby
 before_install:
-    - gem install packaging_rake_tasks
+  # install aspell headers and the English dictionary
+  - sudo apt-get install --no-install-recommends libaspell-dev aspell-en
 script:
-    - rake test:unit
-    - rake tarball
-    - gem install package/yast-rake*.gem
-
+  - bundle exec rake test:unit
+  - bundle exec rake check:spelling
+  - bundle exec rake tarball
+  - bundle exec gem install --local package/yast-rake*.gem

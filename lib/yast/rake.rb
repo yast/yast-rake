@@ -46,7 +46,7 @@ Yast::Tasks.configuration do |conf|
   conf.obs_project = "YaST:Head"
   conf.obs_sr_project = "openSUSE:Factory"
   conf.package_name = File.read("RPMNAME").strip if File.exists?("RPMNAME")
-  conf.version = Yast::Tasks.spec_version
+  conf.version = Yast::Tasks.spec_version if !Dir.glob("package/*.spec").empty?
 end
 
 # load own tasks

@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Wed Mar 11 20:02:42 UTC 2015 - lslezak@suse.cz
+
+- added "check:spelling" task - spell check files (by default
+  *.md and *.html files), needs "raspell" gem (no explicit
+  dependency)
+- do not crash when there is no "package/*.spec" file (e.g.
+  in yast.github.io repository)
+- 0.1.11
+
+-------------------------------------------------------------------
 Thu Nov 13 09:26:46 UTC 2014 - lslezak@suse.cz
 
 - new tasks:
