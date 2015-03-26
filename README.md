@@ -49,6 +49,7 @@ packages and the `raspell` Ruby gem. (The reason is to decrease the dependencies
 for the packages which do not use this task.)
 
 These commands should work:
+
     sudo zypper in aspell-devel aspell-en ruby-devel
     sudo gem install raspell
 
