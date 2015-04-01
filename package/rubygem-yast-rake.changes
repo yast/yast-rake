@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Wed Apr  1 10:07:26 UTC 2015 - jreidinger@suse.com
+
+- regenerate spec file to fix build for ruby2.2 in OBS 
+
+-------------------------------------------------------------------
 Thu Mar 26 14:08:51 UTC 2015 - lslezak@suse.cz
 
 - fixed gem packaging (missing "lib/tasks/spell.dict" file)
