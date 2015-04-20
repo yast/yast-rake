@@ -1,0 +1,50 @@
+# This is the global spellcheck config shared by all YaST repositories.
+
+---
+check:
+  - "**/*.html"
+  - "**/*.md"
+ignore: []
+dictionary:
+  #
+  # Notes: Write the words in alphabetical order, if an unknown word
+  # is not generic put it into the repository specific dictionary.
+  #
+  - API
+  - bnc
+  - boolean
+  - Bugzilla
+  - devel
+  - DHCP
+  - freenode
+  - gh
+  - GitHub
+  - GitHub's
+  - html
+  - IRC
+  - LDAP
+  - md
+  - NCurses
+  - NFS
+  - NIS
+  - openSUSE
+  - osc
+  - Rakefile
+  - rb
+  - refactorings
+  - RSpec
+  - runlevel
+  - SCR
+  - SLP
+  - sudo
+  - SUSE
+  - systemd
+  - testsuite
+  - UI
+  - WFM
+  - workflow
+  - yast
+  - YaST
+  - ycp
+  - YCP
+  - zypper

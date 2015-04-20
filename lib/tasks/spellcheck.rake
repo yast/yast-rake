@@ -28,41 +28,8 @@
 # The lines starting with '#' character are ignored (used for comments),
 #
 
-GLOBAL_DICTIONARY_FILE = "spell.dict"
-CUSTOM_DICTIONARY_FILE = ".spell.dict"
-
-def read_dictionary_file(file)
-  puts "Loading custom dictionary (#{file})..." if verbose == true
-  words = File.read(file).split("\n")
-
-  # remove comments
-  words.reject! { |word| word.start_with?("#")}
-  words.each(&:chomp!)
-end
-
-# read the global and the repository custom dictionary
-def read_custom_words
-  # read the global default custom dictionary
-  dict_path = File.expand_path("../#{GLOBAL_DICTIONARY_FILE}", __FILE__)
-  custom_words = read_dictionary_file(dict_path)
-
-  # read the custom dictionary from the project directory if present
-  dict_path = CUSTOM_DICTIONARY_FILE
-  if File.exist?(dict_path)
-    local_dict = read_dictionary_file(dict_path)
-    duplicates = custom_words & local_dict
-
-    if !duplicates.empty?
-      $stderr.puts "Warning: Found duplicates in the local dictionary (#{dict_path}):\n"
-      duplicates.each {|duplicate| $stderr.puts "  #{duplicate}" }
-      $stderr.puts
-    end
-
-    custom_words += local_dict - duplicates
-  end
-
-  custom_words
-end
+GLOBAL_SPELL_CONFIG_FILE = File.expand_path("../spell.yml", __FILE__)
+CUSTOM_SPELL_CONFIG_FILE = ".spell.yml"
 
 def aspell_speller
   # raspell is an optional dependency, handle the missing case nicely
@@ -82,25 +49,58 @@ def aspell_speller
   speller
 end
 
+def files_to_check(config)
+  files = config["check"].reduce([]) {|acc, glob| acc + Dir[glob]}
+  files = config["ignore"].reduce(files) {|acc, glob| acc - Dir[glob]}
+
+  files
+end
+
+def read_spell_config(file)
+  return {} unless File.exist?(file)
+
+  puts "Loading config file (#{file})..." if verbose == true
+  require "yaml"
+  YAML.load_file(file)
+end
+
+# read the global and the custom spell configs and merge them
+def spell_config
+  config = read_spell_config(GLOBAL_SPELL_CONFIG_FILE)
+  custom_config = read_spell_config(CUSTOM_SPELL_CONFIG_FILE)
+
+  duplicates = config["dictionary"] & custom_config["dictionary"].to_a
+  if !duplicates.empty?
+    $stderr.puts "Warning: Found dictionary duplicates in the local dictionary " \
+      "(#{CUSTOM_SPELL_CONFIG_FILE}):\n"
+    duplicates.each {|duplicate| $stderr.puts "  #{duplicate}" }
+    $stderr.puts
+  end
+
+  custom_config["dictionary"] = config["dictionary"] + custom_config["dictionary"].to_a
+  custom_config["dictionary"].uniq!
+
+  # override the global values by the local if present
+  config.merge!(custom_config)
+
+  config
+end
+
 namespace :check do
-  desc "Run spell checker (by default for *.md and *.html files in Git)"
-  task :spelling, :regexp do |t, args|
-    regexp = args[:regexp] || /\.(md|html)\z/
+  desc "Run spell checker (by default for *.md and *.html files)"
+  task :spelling do
     success = true
 
-    files = `git ls-files . | grep -v \\.gitignore`.split("\n")
-    files.select!{|file| file.match(regexp)}
-
-    custom_words = read_custom_words
+    config = spell_config
     speller = aspell_speller
 
-    files.each do |file|
+    files_to_check(config).each do |file|
       puts "Checking #{file}..." if verbose == true
       # spell check each line separately so we can report error locations properly
       lines = File.read(file).split("\n")
 
       lines.each_with_index do |text, index|
-        misspelled = speller.list_misspelled([text]) - custom_words
+        misspelled = speller.list_misspelled([text]) - config["dictionary"]
 
         if !misspelled.empty?
           success = false
@@ -117,7 +117,7 @@ namespace :check do
       puts "Spelling OK."
     else
       $stderr.puts "Spellcheck failed! (Fix it or add the words to " \
-        "'#{CUSTOM_DICTIONARY_FILE}' file if it is OK.)"
+        "'#{CUSTOM_SPELL_CONFIG_FILE}' file if it is OK.)"
       exit 1
     end
   end
