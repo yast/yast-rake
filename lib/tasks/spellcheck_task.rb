@@ -51,7 +51,7 @@ module Yast
 
     # optionally colorize the misspelled words if the rainbow gem is present
     # @return [Boolean] true when the colorization support is present
-    def colorize
+    def colorize?
       return @colorize unless @colorize.nil?
 
       begin
@@ -145,7 +145,7 @@ module Yast
         next if misspelled.empty?
 
         success = false
-        misspelled.each {|word| text.gsub!(word, Rainbow(word).red)} if colorize
+        misspelled.each {|word| text.gsub!(word, Rainbow(word).red)} if colorize?
         puts "#{file}:#{index + 1}: \"#{text}\""
 
         misspelled.each { |word| puts "    #{word.inspect} => #{speller.suggest(word)}" }
