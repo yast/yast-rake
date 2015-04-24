@@ -2,10 +2,11 @@
 #
 # Write the words in alphabetical order, one word per line.
 # If an unknown word is generic put it into the global dictionary
-# in lib/tasks/.spell.dict file.
+# in lib/tasks/spell.yml file.
 
-# The Yast namespace, the whole tool is spelled YaST!
-Yast
-
-raspell
-aspell
+---
+dictionary:
+  # The Yast namespace, the whole tool is spelled YaST!
+  - Yast
+  - aspell
+  - raspell

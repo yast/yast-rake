@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Thu Apr 23 18:27:49 UTC 2015 - lslezak@suse.cz
+
+- allow to run the "check:spelling" task outside a Git checkout
+  (to use it in the Jenkins jobs during package build)
+- colorize the misspelled words in the output (if the "rainbow"
+  gem is installed)
+- use YAML config files
+- 0.2.2
+
+-------------------------------------------------------------------
 Wed Apr  1 10:07:26 UTC 2015 - jreidinger@suse.com
 
 - regenerate spec file to fix build for ruby2.2 in OBS 
