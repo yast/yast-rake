@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Tue Apr 28 13:34:00 UTC 2015 - lslezak@suse.cz
+
+- optionally load the tasks from yast-rake-ci if it is installed
+- 0.2.3
+
+-------------------------------------------------------------------
 Thu Apr 23 18:27:49 UTC 2015 - lslezak@suse.cz
 
 - allow to run the "check:spelling" task outside a Git checkout
