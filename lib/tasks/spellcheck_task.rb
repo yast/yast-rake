@@ -27,8 +27,8 @@
 # The custom dictionaries are defined at the "dictionary" key.
 #
 
-require 'rake'
-require 'rake/tasklib'
+require "rake"
+require "rake/tasklib"
 
 module Yast
   # Defines a spellcheck rake task
@@ -44,7 +44,6 @@ module Yast
           run_task
         end
       end
-
     end
 
     private
@@ -86,8 +85,8 @@ module Yast
     # evaluate the files to check
     # @return [Array<String>] list of files
     def files_to_check
-      files = config["check"].reduce([]) {|acc, glob| acc + Dir[glob]}
-      config["ignore"].reduce(files) {|acc, glob| acc - Dir[glob]}
+      files = config["check"].reduce([]) { |a, e| a + Dir[e] }
+      config["ignore"].reduce(files) { |a, e| a - Dir[e] }
     end
 
     # read a Yaml config file
@@ -108,7 +107,7 @@ module Yast
 
       $stderr.puts "Warning: Found dictionary duplicates in the local dictionary " \
         "(#{CUSTOM_SPELL_CONFIG_FILE}):\n"
-      duplicates.each {|duplicate| $stderr.puts "  #{duplicate}" }
+      duplicates.each { |duplicate| $stderr.puts "  #{duplicate}" }
       $stderr.puts
     end
 
@@ -145,7 +144,7 @@ module Yast
         next if misspelled.empty?
 
         success = false
-        misspelled.each {|word| text.gsub!(word, Rainbow(word).red)} if colorize?
+        misspelled.each { |word| text.gsub!(word, Rainbow(word).red) } if colorize?
         puts "#{file}:#{index + 1}: \"#{text}\""
 
         misspelled.each { |word| puts "    #{word.inspect} => #{speller.suggest(word)}" }
@@ -165,6 +164,5 @@ module Yast
         exit 1
       end
     end
-
   end
 end

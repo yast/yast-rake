@@ -17,11 +17,12 @@
 #++
 require "packaging"
 
-#create wrapper to Packaging Configuration
+# create wrapper to Packaging Configuration
 module Yast
+  # Yast::Task module contains helper methods
   module Tasks
-    def self.configuration &block
-      ::Packaging.configuration &block
+    def self.configuration(&block)
+      ::Packaging.configuration(&block)
     end
 
     # read the version from spec file
@@ -45,7 +46,7 @@ task.enhance(prerequisites)
 Yast::Tasks.configuration do |conf|
   conf.obs_project = "YaST:Head"
   conf.obs_sr_project = "openSUSE:Factory"
-  conf.package_name = File.read("RPMNAME").strip if File.exists?("RPMNAME")
+  conf.package_name = File.read("RPMNAME").strip if File.exist?("RPMNAME")
   conf.version = Yast::Tasks.spec_version if !Dir.glob("package/*.spec").empty?
   conf.skip_license_check << /spell.dict$/ # skip license check for spelling dictionaries
 end
@@ -62,4 +63,3 @@ begin
 rescue LoadError
   puts "INFO: Gem yast-rake-ci not installed, extra tasks not loaded" if verbose == true
 end
-

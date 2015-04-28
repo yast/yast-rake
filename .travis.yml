@@ -1,8 +1,9 @@
 language: ruby
 before_install:
   # install aspell headers and the English dictionary
-  - sudo apt-get install --no-install-recommends libaspell-dev aspell-en
+  - sudo apt-get install --no-install-recommends libaspell-dev aspell-en yast2-devtools
 script:
   - bundle exec rake check:spelling
+  - bundle exec rubocop
   - bundle exec rake package
   - bundle exec gem install --local package/yast-rake*.gem

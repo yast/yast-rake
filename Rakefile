@@ -18,10 +18,10 @@
 
 require_relative "lib/yast/rake"
 
-#remove tarball implementation and create gem for this gemfile
+# remove tarball implementation and create gem for this gemfile
 Rake::Task[:tarball].clear
 # build the gem package
-desc 'Build gem package, save RPM sources to package subdirectory'
+desc "Build gem package, save RPM sources to package subdirectory"
 task :"tarball" do
   version = File.read("VERSION").chomp
   Dir["package/*.tar.bz2"].each do |f|
@@ -32,15 +32,15 @@ task :"tarball" do
     rm g
   end
 
-  sh 'gem build yast-rake.gemspec'
+  sh "gem build yast-rake.gemspec"
   mv "yast-rake-#{version}.gem", "package"
 end
 
-#remove install implementation and install via gem
+# remove install implementation and install via gem
 Rake::Task[:install].clear
-desc 'Install yast-rake gem package'
-task :install => :tarball do
-  sh 'sudo gem install --local package/yast-rake*.gem'
+desc "Install yast-rake gem package"
+task install: :tarball do
+  sh "sudo gem install --local package/yast-rake*.gem"
 end
 
 # this gem uses VERSION file, replace the standard yast implementation
