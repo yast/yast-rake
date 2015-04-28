@@ -59,7 +59,7 @@ end
 # optionally load the tasks from yast-rake-ci if it is installed
 begin
   require "yast/rake_ci"
-  rescue LoadError
-    puts "INFO: Gem yast-rake-ci not installed, extra tasks not loaded" if verbose == true
+rescue LoadError
+  puts "INFO: Gem yast-rake-ci not installed, extra tasks not loaded" if verbose == true
 end
 
