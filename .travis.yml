@@ -1,7 +1,10 @@
 language: ruby
 before_install:
   # install aspell headers and the English dictionary
-  - sudo apt-get install --no-install-recommends libaspell-dev aspell-en yast2-devtools
+  - sudo apt-get install --no-install-recommends libaspell-dev aspell-en
+  - wget https://raw.githubusercontent.com/yast/yast-devtools/master/travis-tools/travis_setup.sh
+  - sh ./travis_setup.sh -p "yast2-devtools"
+  - rm ./travis_setup.sh
 script:
   - bundle exec rake check:spelling
   - bundle exec rubocop
