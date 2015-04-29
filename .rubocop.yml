@@ -1,0 +1,16 @@
+# use the shared Yast defaults
+inherit_from:
+  /usr/share/YaST2/data/devtools/data/rubocop_yast_style.yml
+
+Metrics/LineLength:
+  Max: 100
+
+# Offense count: 2
+Metrics/AbcSize:
+  Max: 26
+
+# Offense count: 4
+# Configuration parameters: CountComments.
+Metrics/MethodLength:
+  Max: 14
+

@@ -23,15 +23,14 @@ module Packaging
   class Configuration
     attr_writer :install_locations
 
-    DESTDIR = ENV['DESTDIR'] || '/'
-    YAST_DIR = DESTDIR + '/usr/share/YaST2/'
-    YAST_LIB_DIR = DESTDIR + '/usr/lib/YaST2/'
-    YAST_DESKTOP_DIR = DESTDIR + '/usr/share/applications/YaST2/'
-    AUTOYAST_RNC_DIR = YAST_DIR + 'schema/autoyast/rnc/'
-    FILLUP_DIR = DESTDIR + '/var/adm/fillup-templates/'
+    DESTDIR = ENV["DESTDIR"] || "/"
+    YAST_DIR = DESTDIR + "/usr/share/YaST2/"
+    YAST_LIB_DIR = DESTDIR + "/usr/lib/YaST2/"
+    YAST_DESKTOP_DIR = DESTDIR + "/usr/share/applications/YaST2/"
+    AUTOYAST_RNC_DIR = YAST_DIR + "schema/autoyast/rnc/"
+    FILLUP_DIR = DESTDIR + "/var/adm/fillup-templates/"
 
-
-    #specific directory that contain dynamic part of package name
+    # specific directory that contain dynamic part of package name
     def install_doc_dir
       DESTDIR + "/usr/share/doc/packages/#{package_name}/"
     end
@@ -52,7 +51,7 @@ module Packaging
         "**/src/autoyast[_-]rnc/*"          => AUTOYAST_RNC_DIR,
         "**/src/fillup/*"                   => FILLUP_DIR,
         "**/src/desktop/*.desktop"          => YAST_DESKTOP_DIR,
-        "{README*,COPYING,CONTRIBUTING.md}" => install_doc_dir,
+        "{README*,COPYING,CONTRIBUTING.md}" => install_doc_dir
       }
     end
   end
@@ -62,7 +61,7 @@ desc "Install to system"
 task :install do
   config = ::Packaging::Configuration.instance
   config.install_locations.each_pair do |glob, install_to|
-    FileUtils.mkdir_p(install_to, :verbose => true) unless File.directory?(install_to)
+    FileUtils.mkdir_p(install_to, verbose: true) unless File.directory?(install_to)
     Dir[glob].each do |source|
       begin
         # do not use FileUtils.cp_r as it have different behavior if target

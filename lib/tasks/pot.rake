@@ -52,14 +52,14 @@ namespace :check do
 
   desc "Check translatable strings for common mistakes"
   # depends on the global "pot" task defined above
-  task :pot => :"rake:pot" do
+  task pot: :"rake:pot" do
     Dir["*.pot"].each do |pot|
       puts "Checking #{pot}..."
       lines = File.readlines(pot)
       # remove comments
-      lines.reject!{ |line| line.match(/^#/) }
+      lines.reject! { |line| line.match(/^#/) }
       # Ruby substitution present?
-      lines.select!{ |line| line.include?('#{') }
+      lines.select! { |line| line.include?("\#{") }
 
       clean_pot_lines(lines)
 

@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Tue Apr 28 15:38:56 UTC 2015 - lslezak@suse.cz
+
+- use rubocop for checking the code style
+
+-------------------------------------------------------------------
 Tue Apr 28 13:34:00 UTC 2015 - lslezak@suse.cz
 
 - optionally load the tasks from yast-rake-ci if it is installed

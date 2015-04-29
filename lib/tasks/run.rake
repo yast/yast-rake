@@ -21,8 +21,8 @@ def set_y2dir
 end
 
 desc "Run given client"
-task :run, :client do |t, args|
-  args.with_defaults = { :client => nil }
+task :run, :client do |_t, args|
+  args.with_defaults = { client: nil }
   client = args[:client]
   if client
     client = Dir["**/src/clients/#{client}.rb"].first
