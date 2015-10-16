@@ -3,6 +3,11 @@
   obs_project: "Devel:YaST:SLE-12"
   obs_sr_project: "SUSE:SLE-12:Update"
   obs_target: "SLE_12"
+:leap_42_1:
+  obs_api: "https://api.opensuse.org"
+  obs_target: "openSUSE_Leap_42.1"
+  obs_sr_project: "openSUSE:Leap:42.1"
+  obs_project: "YaST:openSUSE:42.1"
 :factory:
   obs_project: "YaST:Head"
   obs_sr_project: "openSUSE:Factory"
