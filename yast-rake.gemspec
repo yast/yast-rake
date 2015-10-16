@@ -35,7 +35,7 @@ end
 
   # gem content
   spec.files   = Dir["lib/**/*.rb", "lib/tasks/spell.yml", "lib/tasks/*.rake",
-    "COPYING", "VERSION"]
+    "data/*", "COPYING", "VERSION"]
 
   # define LOAD_PATH
   spec.require_path = "lib"
