@@ -26,7 +26,8 @@ prerequisites.delete("test")
 
 task.enhance(prerequisites)
 
-Yast::Tasks.submit_to(:factory)
+yast_submit = ENV["YAST_SUBMIT"] || :factory
+Yast::Tasks.submit_to(yast_submit.to_sym)
 
 Yast::Tasks.configuration do |conf|
   conf.package_name = File.read("RPMNAME").strip if File.exist?("RPMNAME")
