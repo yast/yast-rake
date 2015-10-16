@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Fri Oct 16 14:59:38 UTC 2015 - igonzalezsosa@suse.com
+
+- add a submit_to method to simplify OBS configuration
+
+-------------------------------------------------------------------
 Tue Apr 28 15:38:56 UTC 2015 - lslezak@suse.cz
 
 - use rubocop for checking the code style
