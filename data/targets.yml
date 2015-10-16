@@ -8,6 +8,11 @@
   obs_target: "openSUSE_Leap_42.1"
   obs_sr_project: "openSUSE:Leap:42.1"
   obs_project: "YaST:openSUSE:42.1"
+:sle12sp1:
+  obs_api: "https://api.suse.de/"
+  obs_project: "Devel:YaST:Head"
+  obs_sr_project: "SUSE:SLE-12-SP1:GA"
+  obs_target: "SLE-12-SP1"
 :factory:
   obs_project: "YaST:Head"
   obs_sr_project: "openSUSE:Factory"
