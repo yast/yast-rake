@@ -10,8 +10,13 @@
   obs_project: "YaST:openSUSE:42.1"
 :sle12sp1:
   obs_api: "https://api.suse.de/"
-  obs_project: "Devel:YaST:Head"
+  obs_project: "Devel:YaST:SLE-12-SP1"
   obs_sr_project: "SUSE:SLE-12-SP1:GA"
+  obs_target: "SLE-12-SP1"
+:sle12sp2:
+  obs_api: "https://api.suse.de/"
+  obs_project: "Devel:YaST:Head"
+  obs_sr_project: "SUSE:SLE-12-SP2:GA"
   obs_target: "SLE-12-SP1"
 :factory:
   obs_project: "YaST:Head"
