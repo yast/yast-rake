@@ -53,6 +53,34 @@ These commands should work:
     sudo zypper in aspell-devel aspell-en ruby-devel
     sudo gem install raspell
 
+# Customizing
+
+Yast::Tasks provides a method to change the configuration of the packaging
+tasks. As it's just a proxy for `::Packaging.configuration`, the same options
+are available.
+
+```ruby
+  Yast::Tasks.configuration do |conf|
+    conf.obs_api = "https://api.opensuse.org/"
+    conf.obs_project = "YaST:openSUSE:42.1"
+  end
+```
+
+To avoid duplication, Yast::Tasks also provides a method to set the whole
+configuration at once, just specifying the name of one of the available
+[target definitions](https://github.com/yast/yast-rake/blob/master/data/targets.yml).
+For example, if you want to submit to SLE 12 Service Pack 1, you can do:
+
+```
+  Yast::Tasks.submit_to(:sle12sp1)
+```
+
+This method can receive, as a second parameter, the path to your own
+definitions if needed.
+
+If `submit_to` is not explicitly used, it will be read from the environment
+variable `YAST_SUBMIT`. If that variable is not set, `:factory` will be used.
+
 # Contributing
 
 1. Fork it
