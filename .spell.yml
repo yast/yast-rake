@@ -10,3 +10,10 @@ dictionary:
   - Yast
   - aspell
   - raspell
+  # As long as we run spell check for the ruby code, we need these
+  - sle
+  - conf
+  - sp
+  - YAST
+  - api
+  - SLE
