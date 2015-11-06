@@ -140,19 +140,39 @@ module Yast
 
       success = true
       lines.each_with_index do |text, index|
-        misspelled = speller.list_misspelled([text]) - config["dictionary"]
+        misspelled = misspelled_on_line(text)
         next if misspelled.empty?
 
         success = false
-        misspelled.each { |word| text.gsub!(word, Rainbow(word).red) } if colorize?
-        puts "#{file}:#{index + 1}: \"#{text}\""
-
-        misspelled.each { |word| puts "    #{word.inspect} => #{speller.suggest(word)}" }
-        puts
+        print_misspelled(misspelled, index)
       end
 
       success
     end
+
+    def print_misspelled(list, index)
+      list.each { |word| text.gsub!(word, Rainbow(word).red) } if colorize?
+      puts "#{file}:#{index + 1}: \"#{text}\""
+
+      list.each { |word| puts "    #{word.inspect} => #{speller.suggest(word)}" }
+      puts
+    end
+
+    def misspelled_on_line(text)
+      switch_block_tag if block_line?(text)
+      return [] if inside_block
+      speller.list_misspelled([text]) - config["dictionary"]
+    end
+
+    def block_line?(line)
+      line =~ /^\s*```/
+    end
+
+    def switch_block_tag
+      @inside_block = !@inside_block
+    end
+
+    attr_reader :inside_block
 
     # run the task
     def run_task
