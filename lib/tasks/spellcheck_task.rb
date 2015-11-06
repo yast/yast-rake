@@ -140,6 +140,8 @@ module Yast
 
       success = true
       lines.each_with_index do |text, index|
+        switch_block_tag if block_line?(text)
+        next if inside_block?
         misspelled = speller.list_misspelled([text]) - config["dictionary"]
         next if misspelled.empty?
 
@@ -152,6 +154,18 @@ module Yast
       end
 
       success
+    end
+
+    def block_line?(line)
+      line =~ /^\s*```/
+    end
+
+    def switch_block_tag
+      @block_flag = !@block_flag
+    end
+
+    def inside_block?
+      @block_flag
     end
 
     # run the task
