@@ -10,3 +10,6 @@ dictionary:
   - Yast
   - aspell
   - raspell
+  - SLE
+  # As part of YAST_SUBMIT
+  - YAST
