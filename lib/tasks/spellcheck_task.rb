@@ -144,13 +144,13 @@ module Yast
         next if misspelled.empty?
 
         success = false
-        print_misspelled(misspelled, index)
+        print_misspelled(misspelled, index, text)
       end
 
       success
     end
 
-    def print_misspelled(list, index)
+    def print_misspelled(list, index, text)
       list.each { |word| text.gsub!(word, Rainbow(word).red) } if colorize?
       puts "#{file}:#{index + 1}: \"#{text}\""
 
