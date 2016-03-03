@@ -13,6 +13,10 @@
   obs_project: "Devel:YaST:SLE-12-SP1"
   obs_sr_project: "SUSE:SLE-12-SP1:Update"
   obs_target: "SLE-12-SP1"
+:sle12sp1_public:
+  obs_api: "https://api.opensuse.org"
+  obs_project: "YaST:SLE-12:SP1"
+  obs_target: "SLE_12_SP1"
 :sle12sp2:
   obs_api: "https://api.suse.de/"
   obs_project: "Devel:YaST:Head"

@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Thu Mar  3 11:57:12 UTC 2016 - lslezak@suse.cz
+
+- added "sle12sp1_public" build target to build against SLE12-SP1
+  in public OBS (bnc#969358)
+- 0.2.8
+
+-------------------------------------------------------------------
 Wed Jan 13 15:39:29 UTC 2016 - igonzalezsosa@suse.com
 
 - update build target for sles12sp1 (bnc#0)
