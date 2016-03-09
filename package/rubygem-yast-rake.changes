@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Wed Mar  9 14:48:46 CET 2016 - schubi@suse.de
+
+- Requiring packaging_rake_tasks ~> 1.1.4 in order to check
+  for bugzilla,fate entries in the changes file.
+  (bnc#0)
+- 0.2.9
+
+-------------------------------------------------------------------
 Thu Mar  3 11:57:12 UTC 2016 - lslezak@suse.cz
 
 - added "sle12sp1_public" build target to build against SLE12-SP1
