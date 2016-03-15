@@ -42,5 +42,5 @@ end
 
   # dependencies
   spec.add_dependency("rake")
-  spec.add_dependency("packaging_rake_tasks", ">= 1.0.0")
+  spec.add_dependency("packaging_rake_tasks", ">= 1.1.4")
 end
