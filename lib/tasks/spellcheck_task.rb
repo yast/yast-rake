@@ -46,7 +46,7 @@ module Yast
       end
     end
 
-    private
+  private
 
     # optionally colorize the misspelled words if the rainbow gem is present
     # @return [Boolean] true when the colorization support is present
