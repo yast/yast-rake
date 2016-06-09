@@ -41,12 +41,12 @@ namespace :version do
   task wbump: :bump do
     puts "Generating helper class"
 
-    Dir.glob("**/lib/*") do |filename|
-      next if !File.directory?(filename)
+    Dir.glob("**/lib/*") do |path|
+      next if !File.directory?(path)
 
-      module_name = File.basename(filename).downcase
+      module_name = File.basename(path).downcase
       target_file = "#{module_name}_version.rb"
-      target_path = "#{filename}/#{target_file}"
+      target_path = "#{path}/#{target_file}"
 
       puts "Writing helper class to: #{target_path}"
 
@@ -58,9 +58,7 @@ module Yast
 end
       eof
 
-      open("#{filename}/#{target_file}", "w") do |f|
-        f << class_definition
-      end
+      File.write(target_path, class_definition)
     end
   end
 end
