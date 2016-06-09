@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Thu Jun  9 12:12:17 UTC 2016 - mfilka@suse.com
+
+- implemented version:wbump task for creating a helper class for
+  accessing package version inside yast project
+- 0.2.10 
+
+-------------------------------------------------------------------
 Wed Mar  9 14:48:46 CET 2016 - schubi@suse.de
 
 - Requiring packaging_rake_tasks ~> 1.1.4 in order to check
