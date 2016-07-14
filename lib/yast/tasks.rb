@@ -34,7 +34,7 @@ module Yast
       # use the first *.spec file found, assume all spec files
       # contain the same version
       File.readlines(Dir.glob("package/*.spec").first)
-        .grep(/^\s*Version:\s*/).first.sub("Version:", "").strip
+          .grep(/^\s*Version:\s*/).first.sub("Version:", "").strip
     end
 
     def self.submit_to(target, file = TARGETS_FILE)

@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.name	= "yast-rake"
   spec.version	= File.read(File.expand_path("../VERSION", __FILE__)).chomp
   spec.summary	= "Rake tasks that provide basic work-flow for Yast development"
-  spec.license    = "LGPL v2.1"
+  spec.license = "LGPL v2.1"
 
   # author
   spec.author	= "Josef Reidinger"
@@ -34,7 +34,7 @@ from git repo.
 end
 
   # gem content
-  spec.files   = Dir["lib/**/*.rb", "lib/tasks/spell.yml", "lib/tasks/*.rake",
+  spec.files = Dir["lib/**/*.rb", "lib/tasks/spell.yml", "lib/tasks/*.rake",
     "data/*", "COPYING", "VERSION"]
 
   # define LOAD_PATH
