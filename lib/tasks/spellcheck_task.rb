@@ -34,7 +34,7 @@ module Yast
   # Defines a spellcheck rake task
   class SpellcheckTask < Rake::TaskLib
     GLOBAL_SPELL_CONFIG_FILE = File.expand_path("../spell.yml", __FILE__)
-    CUSTOM_SPELL_CONFIG_FILE = ".spell.yml"
+    CUSTOM_SPELL_CONFIG_FILE = ".spell.yml".freeze
 
     # define the Rake task in the constructor
     def initialize
@@ -46,7 +46,7 @@ module Yast
       end
     end
 
-    private
+  private
 
     # optionally colorize the misspelled words if the rainbow gem is present
     # @return [Boolean] true when the colorization support is present
