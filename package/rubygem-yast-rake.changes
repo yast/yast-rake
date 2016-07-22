@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Fri Jul 22 14:35:57 UTC 2016 - mvidner@suse.com
+
+- "rake test:unit" will sort the file list to undo the
+  nondeterminism introduced in rspec-3.5.0 (bsc#990267).
+- 0.2.10
+
+-------------------------------------------------------------------
 Wed Mar  9 14:48:46 CET 2016 - schubi@suse.de
 
 - Requiring packaging_rake_tasks ~> 1.1.4 in order to check
