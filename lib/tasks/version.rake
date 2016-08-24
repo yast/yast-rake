@@ -36,4 +36,29 @@ namespace :version do
       File.write(spec_file, spec)
     end
   end
+
+  desc "Bump package version and create a simple class for acessing the version from sources"
+  task wbump: :bump do
+    puts "Generating helper class"
+
+    Dir.glob("**/lib/*") do |path|
+      next if !File.directory?(path)
+
+      module_name = File.basename(path).downcase
+      target_file = "#{module_name}_version.rb"
+      target_path = "#{path}/#{target_file}"
+
+      puts "Writing helper class to: #{target_path}"
+
+      class_definition = <<-eof
+module Yast
+  class #{module_name.capitalize}Version
+    VERSION = "#{version}".freeze
+  end
+end
+      eof
+
+      File.write(target_path, class_definition)
+    end
+  end
 end
