@@ -41,6 +41,7 @@ dictionary:
   - systemd
   - testsuite
   - UI
+  - vc
   - WFM
   - workflow
   - yast
