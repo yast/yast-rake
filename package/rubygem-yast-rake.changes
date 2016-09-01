@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Thu Sep  1 12:37:10 UTC 2016 - jreidinger@suse.com
+
+- prepare for branching for sle12sp3 (bnc#996865)
+- add to known words "vc" as part of osc vc command in
+  CONTRIBUTING.md
+- 0.2.10
+
+-------------------------------------------------------------------
 Wed Mar  9 14:48:46 CET 2016 - schubi@suse.de
 
 - Requiring packaging_rake_tasks ~> 1.1.4 in order to check

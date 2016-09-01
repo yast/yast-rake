@@ -19,9 +19,19 @@
   obs_target: "SLE_12_SP1"
 :sle12sp2:
   obs_api: "https://api.suse.de/"
-  obs_project: "Devel:YaST:Head"
+  obs_project: "Devel:YaST:SLE-12-SP2"
   obs_sr_project: "SUSE:SLE-12-SP2:GA"
-  obs_target: "SLE-12-SP2-GA"
+  obs_target: "SLE_12_SP2"
+:sle12sp3:
+  obs_api: "https://api.suse.de/"
+  obs_project: "Devel:YaST:Head"
+  obs_sr_project: "SUSE:SLE-12-SP3:GA"
+  obs_target: "sle12_sp3"
+:sle_latest:
+  obs_api: "https://api.suse.de/"
+  obs_project: "Devel:YaST:Head"
+  obs_sr_project: "SUSE:SLE-12-SP3:GA"
+  obs_target: "sle12_sp3"
 :factory:
   obs_project: "YaST:Head"
   obs_sr_project: "openSUSE:Factory"
