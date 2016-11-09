@@ -25,7 +25,7 @@
 :sle12sp2:
   obs_api: "https://api.suse.de/"
   obs_project: "Devel:YaST:SLE-12-SP2"
-  obs_sr_project: "SUSE:SLE-12-SP2:GA"
+  obs_sr_project: "SUSE:SLE-12-SP2:Update"
   obs_target: "SLE_12_SP2"
 :sle12sp3:
   obs_api: "https://api.suse.de/"
