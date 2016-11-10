@@ -1,7 +1,8 @@
 -------------------------------------------------------------------
 Wed Nov  9 16:50:07 UTC 2016 - igonzalezsosa@suse.com
 
-- update sle12sp2 target (bnc#1009324) 
+- update sle12sp2 target and add a new one for public
+  Jenkins instance (sle12sp2_public) (bnc#1009324)
 - 0.2.12
 
 -------------------------------------------------------------------
