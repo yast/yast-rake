@@ -31,6 +31,11 @@
   obs_api: "https://api.opensuse.org"
   obs_project: "YaST:SLE-12:SP2"
   obs_target: "SLE_12_SP2"
+:sle12sp2_casp:
+  obs_api: "https://api.suse.de/"
+  obs_project: "Devel:YaST:CASP:1.0"
+  obs_sr_project: "SUSE:SLE-12-SP2:Update:Products:CASP10"
+  obs_target: "CASP_1.0"
 :sle12sp3:
   obs_api: "https://api.suse.de/"
   obs_project: "Devel:YaST:Head"
