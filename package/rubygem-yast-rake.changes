@@ -1,8 +1,7 @@
 -------------------------------------------------------------------
 Thu Dec  1 15:16:58 UTC 2016 - igonzalezsosa@suse.com
 
-- Add sle12sp2_casp target for SLE 12 SP2 based CASP
-  (bnc#1013039)
+- Add casp10 target for CASP 1.0 (bnc#1013039)
 - 0.2.13
 
 -------------------------------------------------------------------
