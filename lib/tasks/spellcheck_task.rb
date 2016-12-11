@@ -61,27 +61,6 @@ module Yast
       end
     end
 
-    # create an Aspell speller object
-    # @return [Aspell] the speller object
-    def speller
-      return @speller if @speller
-      # raspell is an optional dependency, handle the missing case nicely
-      begin
-        require "raspell"
-      rescue LoadError
-        $stderr.puts "ERROR: Ruby gem \"raspell\" is not installed."
-        exit 1
-      end
-
-      # initialize aspell
-      @speller = Aspell.new("en_US")
-      @speller.suggestion_mode = Aspell::NORMAL
-      # ignore the HTML tags in the text
-      @speller.set_option("mode", "html")
-
-      @speller
-    end
-
     # evaluate the files to check
     # @return [Array<String>] list of files
     def files_to_check
@@ -144,24 +123,31 @@ module Yast
         next if misspelled.empty?
 
         success = false
-        print_misspelled(misspelled, index, text)
+        print_misspelled(file, misspelled, index, text)
       end
 
       success
     end
 
-    def print_misspelled(list, index, text)
+    def print_misspelled(file, list, index, text)
       list.each { |word| text.gsub!(word, Rainbow(word).red) } if colorize?
       puts "#{file}:#{index + 1}: \"#{text}\""
-
-      list.each { |word| puts "    #{word.inspect} => #{speller.suggest(word)}" }
-      puts
+      # FIXME print suggestion using "aspell soundslike" command
+      puts "    #{list}\n\n" unless colorize?
     end
 
     def misspelled_on_line(text)
       switch_block_tag if block_line?(text)
       return [] if inside_block
-      speller.list_misspelled([text]) - config["dictionary"]
+
+      require "open3"
+      stdout_str, _status = Open3.capture2("aspell -l en list", stdin_data: text)
+      unknown = stdout_str.split("\n").uniq
+      # ignore the words from the custom dictionary
+      unknown -= config["dictionary"]
+      # ignore the upcase words, they are usually abbreviations (like UEFI, GPL, ...),
+      # adjusting the custom dictionary for each such a word is annoying...
+      unknown.reject{|w| w =~ /\A[A-Z]+\z/}
     end
 
     def block_line?(line)
@@ -176,7 +162,7 @@ module Yast
 
     # run the task
     def run_task
-      if files_to_check.all? { |file| check_file(file) }
+      if files_to_check.map{ |file| check_file(file) }.all?
         puts "Spelling OK."
       else
         $stderr.puts "Spellcheck failed! (Fix it or add the words to " \
