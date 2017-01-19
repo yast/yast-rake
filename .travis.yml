@@ -1,15 +1,11 @@
-language: ruby
+sudo: required
+language: bash
+services:
+  - docker
+
 before_install:
-  # update the broken bundler at Travis
-  # see https://github.com/bundler/bundler/issues/3558#issuecomment-171347979
-  # and https://github.com/increments/qiita-markdown/pull/24
-  - gem update bundler
-  - wget https://raw.githubusercontent.com/yast/yast-devtools/master/travis-tools/travis_setup.sh
-  # install aspell headers and the English dictionary needeed for the check:spelling task
-  - sh ./travis_setup.sh -p "yast2-devtools libaspell-dev aspell-en"
-  - rm ./travis_setup.sh
+  - docker build -t yast-rake-image .
 script:
-  - bundle exec rake check:spelling
-  - bundle exec rubocop
-  - bundle exec rake package
-  - bundle exec gem install --local package/yast-rake*.gem
+  # the "yast-travis-ruby" script is included in the base yastdevel/ruby image
+  # see https://github.com/yast/docker-yast-ruby/blob/master/yast-travis-ruby
+  - docker run -it -e TRAVIS=1 -e TRAVIS_JOB_ID="$TRAVIS_JOB_ID" yast-rake-image yast-travis-ruby
