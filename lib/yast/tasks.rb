@@ -40,7 +40,9 @@ module Yast
     def self.submit_to(target, file = TARGETS_FILE)
       targets = YAML.load_file(file)
       config = targets[target]
-      raise "Not configuration found for #{target}" if config.nil?
+      if config.nil?
+        raise "No configuration found for #{target}. Known values: #{targets.keys.join(", ")}"
+      end
       Yast::Tasks.configuration do |conf|
         config.each do |meth, val|
           conf.public_send("#{meth}=", val)
