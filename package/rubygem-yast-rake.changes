@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Wed Jun 14 14:01:28 UTC 2017 - jreidinger@suse.com
+
+- add sle15 as target and switch sle_latest (bsc#1044312)
+- 0.2.14
+
+-------------------------------------------------------------------
 Thu Dec  1 15:16:58 UTC 2016 - igonzalezsosa@suse.com
 
 - Add casp10 target for CASP 1.0 (bnc#1013039)
