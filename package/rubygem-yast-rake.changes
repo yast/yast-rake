@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Thu Jun 22 19:46:34 UTC 2017 - mfilka@suse.com
+
+- bsc#1044312
+  - set :GA as a target for SLE-12-SP3 submissions since
+    maintenance project is not existing yet.
+- 0.2.15
+
+-------------------------------------------------------------------
 Wed Jun 14 14:01:28 UTC 2017 - jreidinger@suse.com
 
 - add sle15 as target and switch sle_latest (bsc#1044312)
