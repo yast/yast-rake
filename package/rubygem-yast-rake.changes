@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Thu Jul 13 08:43:54 UTC 2017 - jreidinger@suse.com
+
+- set :Update as a target for Leap 42.1 and 42.2 because it is
+  in maintenance mode. (bsc#1044312)
+- 0.2.16
+
+-------------------------------------------------------------------
 Thu Jun 22 19:46:34 UTC 2017 - mfilka@suse.com
 
 - bsc#1044312

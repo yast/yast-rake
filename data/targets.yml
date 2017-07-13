@@ -6,12 +6,12 @@
 :leap_42_1:
   obs_api: "https://api.opensuse.org"
   obs_target: "openSUSE_Leap_42.1"
-  obs_sr_project: "openSUSE:Leap:42.1"
+  obs_sr_project: "openSUSE:Leap:42.1:Update"
   obs_project: "YaST:openSUSE:42.1"
 :leap_42_2:
   obs_api: "https://api.opensuse.org"
   obs_target: "openSUSE_Leap_42.2"
-  obs_sr_project: "openSUSE:Leap:42.2"
+  obs_sr_project: "openSUSE:Leap:42.2:Update"
   obs_project: "YaST:openSUSE:42.2"
 :leap_42_3:
   obs_api: "https://api.opensuse.org"
