@@ -47,6 +47,7 @@ end
 Rake::Task[:'version:bump'].clear
 
 namespace :version do
+  desc "Increase the last part of version in the VERSION and package/*.spec file"
   task :bump do
     # update VERSION
     version_parts = File.read("VERSION").strip.split(".")

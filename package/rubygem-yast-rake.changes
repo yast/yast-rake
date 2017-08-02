@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Wed Aug  2 12:55:26 UTC 2017 - lslezak@suse.cz
+
+- SLE-12-SP3 and Leap 42.3 have been released, send the OBS submit
+  requests to the :Updates projects now (bsc#1044312)
+- 0.2.17
+
+-------------------------------------------------------------------
 Thu Jul 13 08:43:54 UTC 2017 - jreidinger@suse.com
 
 - set :Update as a target for Leap 42.1 and 42.2 because it is
