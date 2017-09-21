@@ -19,7 +19,7 @@
 require "shellwords"
 require "open3"
 
-namespace :buildrequires do
+namespace :build_dependencies do
   def buildrequires
     buildrequires = []
 

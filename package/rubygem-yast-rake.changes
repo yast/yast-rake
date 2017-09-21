@@ -1,7 +1,7 @@
 -------------------------------------------------------------------
 Thu Sep 21 06:16:48 UTC 2017 - lslezak@suse.cz
 
-- Added "buildrequires" tasks to easily install the package build
+- Added "build_dependencies" tasks to easily install the build
   dependencies required for development (bsc#1020033)
 - 0.2.18
 
