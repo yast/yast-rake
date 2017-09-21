@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Thu Sep 21 06:16:48 UTC 2017 - lslezak@suse.cz
+
+- Added "build_dependencies" tasks to easily install the build
+  dependencies required for development (bsc#1020033)
+- 0.2.18
+
+-------------------------------------------------------------------
 Wed Aug  2 12:55:26 UTC 2017 - lslezak@suse.cz
 
 - SLE-12-SP3 and Leap 42.3 have been released, send the OBS submit
