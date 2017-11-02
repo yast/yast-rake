@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Thu Nov  2 08:36:18 UTC 2017 - lslezak@suse.cz
+
+- Keep the current $Y2DIR value in "rake run", just prepend
+  the source directories
+- 0.2.18
+
+-------------------------------------------------------------------
 Wed Aug  2 12:55:26 UTC 2017 - lslezak@suse.cz
 
 - SLE-12-SP3 and Leap 42.3 have been released, send the OBS submit
