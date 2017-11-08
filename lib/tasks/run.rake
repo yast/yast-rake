@@ -17,7 +17,9 @@
 #++
 
 def set_y2dir
-  ENV["Y2DIR"] = Dir["**/src"].join(":")
+  dirs = Dir["**/src"]
+  dirs << ENV["Y2DIR"] if ENV["Y2DIR"] && !ENV["Y2DIR"].empty?
+  ENV["Y2DIR"] = dirs.join(":")
 end
 
 desc "Run given client"
