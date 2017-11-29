@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Wed Nov 29 16:43:06 UTC 2017 - igonzalezsosa@suse.com
+
+- Fix fillup-templates path (bsc#1070408)
+- 0.2.19
+
+-------------------------------------------------------------------
 Thu Nov  2 08:36:18 UTC 2017 - lslezak@suse.cz
 
 - Keep the current $Y2DIR value in "rake run", just prepend
