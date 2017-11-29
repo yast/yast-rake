@@ -28,7 +28,7 @@ module Packaging
     YAST_LIB_DIR = DESTDIR + "/usr/lib/YaST2/"
     YAST_DESKTOP_DIR = DESTDIR + "/usr/share/applications/YaST2/"
     AUTOYAST_RNC_DIR = YAST_DIR + "schema/autoyast/rnc/"
-    FILLUP_DIR = DESTDIR + "/var/adm/fillup-templates/"
+    FILLUP_DIR = DESTDIR + "/usr/share/fillup-templates/"
 
     # specific directory that contain dynamic part of package name
     def install_doc_dir
