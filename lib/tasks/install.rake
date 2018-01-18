@@ -28,7 +28,6 @@ module Packaging
     YAST_LIB_DIR = DESTDIR + "/usr/lib/YaST2/"
     YAST_DESKTOP_DIR = DESTDIR + "/usr/share/applications/YaST2/"
     AUTOYAST_RNC_DIR = YAST_DIR + "schema/autoyast/rnc/"
-    FILLUP_DIR = DESTDIR + "/usr/share/fillup-templates/"
 
     # specific directory that contain dynamic part of package name
     def install_doc_dir
@@ -49,10 +48,20 @@ module Packaging
         "**/src/servers_non_y2"             => YAST_LIB_DIR,
         "**/src/bin"                        => YAST_LIB_DIR,
         "**/src/autoyast[_-]rnc/*"          => AUTOYAST_RNC_DIR,
-        "**/src/fillup/*"                   => FILLUP_DIR,
+        "**/src/fillup/*"                   => fillup_dir,
         "**/src/desktop/*.desktop"          => YAST_DESKTOP_DIR,
         "{README*,COPYING,CONTRIBUTING.md}" => install_doc_dir
       }
+    end
+
+    # Possible fillup templates directories
+    FILLUP_DIRS = ["/usr/share/fillup-templates", "/var/adm/fillup-templates"].freeze
+
+    # @return [String] fillup-templates directory
+    def fillup_dir
+      found = FILLUP_DIRS.find { |d| Dir.exist?(d) }
+      reldir = found || FILLUP_DIRS.first
+      DESTDIR + reldir
     end
   end
 end
