@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Thu Jan 18 14:22:03 UTC 2018 - igonzalezsosa@suse.com
+
+- Use old fillup-templates for openSUSE/SLE prior to 15
+  (bsc#1076602)
+- 0.2.20
+
+-------------------------------------------------------------------
 Wed Nov 29 16:43:06 UTC 2017 - igonzalezsosa@suse.com
 
 - Fix fillup-templates path (bsc#1070408)
