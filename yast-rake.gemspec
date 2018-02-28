@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   # author
   spec.author	= "Josef Reidinger"
   spec.email	= "jreidinger@suse.cz"
-  spec.homepage	= "http://github.org/openSUSE/yast-rake"
+  spec.homepage	= "https://github.com/yast/yast-rake"
 
   spec.summary = "Rake tasks providing basic work-flow for Yast development"
   spec.description = <<-end
