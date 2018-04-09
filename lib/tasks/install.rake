@@ -77,7 +77,7 @@ task :install do
         # exists and we copy a symlink
         sh "cp -r '#{source}' '#{install_to}'"
       rescue => e
-        raise "Cannot instal file #{source} to #{install_to}: #{e.message}"
+        raise "Cannot install file #{source} to #{install_to}: #{e.message}"
       end
     end
   end
