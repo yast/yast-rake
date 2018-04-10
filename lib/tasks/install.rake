@@ -26,6 +26,7 @@ module Packaging
     DESTDIR = ENV["DESTDIR"] || "/"
     YAST_DIR = DESTDIR + "/usr/share/YaST2/"
     YAST_LIB_DIR = DESTDIR + "/usr/lib/YaST2/"
+    YAST_ICON_BASE_DIR = DESTDIR + "/usr/share/YaST2/theme/current/icons"
     YAST_DESKTOP_DIR = DESTDIR + "/usr/share/applications/YaST2/"
     AUTOYAST_RNC_DIR = YAST_DIR + "schema/autoyast/rnc/"
 
@@ -50,7 +51,8 @@ module Packaging
         "**/src/autoyast[_-]rnc/*"          => AUTOYAST_RNC_DIR,
         "**/src/fillup/*"                   => fillup_dir,
         "**/src/desktop/*.desktop"          => YAST_DESKTOP_DIR,
-        "{README*,COPYING,CONTRIBUTING.md}" => install_doc_dir
+        "{README*,COPYING,CONTRIBUTING.md}" => install_doc_dir,
+        "**/icons/*"                        => YAST_ICON_BASE_DIR
       }
     end
 
@@ -77,7 +79,7 @@ task :install do
         # exists and we copy a symlink
         sh "cp -r '#{source}' '#{install_to}'"
       rescue => e
-        raise "Cannot instal file #{source} to #{install_to}: #{e.message}"
+        raise "Cannot install file #{source} to #{install_to}: #{e.message}"
       end
     end
   end
