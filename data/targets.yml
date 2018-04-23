@@ -50,15 +50,20 @@
   obs_api: "https://api.opensuse.org"
   obs_project: "YaST:SLE-12:SP3"
   obs_target: "SLE_12_SP3"
+:sle12sp4:
+  obs_api: "https://api.suse.de/"
+  obs_project: "Devel:YaST:SLE-12-SP4"
+  obs_sr_project: "SUSE:SLE-12-SP4:GA"
+  obs_target: "SLE_12_SP4"
 :sle15:
   obs_api: "https://api.suse.de/"
-  obs_project: "Devel:YaST:Head"
+  obs_project: "Devel:YaST:SLE-15"
   obs_sr_project: "SUSE:SLE-15:GA"
   obs_target: "SUSE_SLE-15_GA"
 :sle_latest:
   obs_api: "https://api.suse.de/"
   obs_project: "Devel:YaST:Head"
-  obs_sr_project: "SUSE:SLE-15:GA"
+  obs_sr_project: nil
   obs_target: "SUSE_SLE-15_GA"
 :factory:
   obs_project: "YaST:Head"

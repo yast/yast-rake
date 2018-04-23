@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Thu Apr 19 08:56:23 UTC 2018 - jreidinger@suse.com
+
+- add SLE12 SP4 as target and switch sle_latest to nil for now
+  until IBS create project for SLE15 SP1. (bsc#1044312)
+- 0.2.22
+
+-------------------------------------------------------------------
 Tue Apr 10 10:16:27 UTC 2018 - lslezak@suse.cz
 
 - Install also the custom icons in "rake install" (by wstephenson)
