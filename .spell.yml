@@ -6,10 +6,12 @@
 
 ---
 dictionary:
+  - CPUs
   # The Yast namespace, the whole tool is spelled YaST!
   - Yast
   - aspell
   - raspell
+  - rspec
   - SLE
   # As part of YAST_SUBMIT
   - YAST

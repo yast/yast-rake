@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Mon May 28 11:20:34 UTC 2018 - lslezak@suse.cz
+
+- Improved "test:unit" rake task - optionally allow running the
+  tests in parallel using the "parallel_tests" gem (bsc#1094875)
+- 0.2.23
+
+-------------------------------------------------------------------
 Thu Apr 19 08:56:23 UTC 2018 - jreidinger@suse.com
 
 - add SLE12 SP4 as target and switch sle_latest to nil for now
