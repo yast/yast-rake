@@ -22,12 +22,29 @@ Update the latest part of version in spec file.
 ## test:unit
 Runs all RSpec tests ending with \_spec.rb or \_test.rb.
 
+If the `.rspec_parallel` file exists then the tests are executed using the
+`parallel_rspec` command which runs the tests in parallel using all available
+CPUs, otherwise the standard RSpec is used.
+
+It is possible to override this behavior via the `PARALLEL_TESTS` environment
+variable. Set it to `1` to run the tests in parallel or set it to `0`
+to use the standard RSpec with a single process.
+
+You can pass additional `parallel_rspec` command options via the
+`PARALLEL_TESTS_OPTIONS` environment. E.g. you might choose to use only the
+half of the available CPUs with `PARALLEL_TESTS_OPTIONS="-m 0.5"` option
+or use just 4 CPUs with the `PARALLEL_TESTS_OPTIONS="-n 4"` option.
+See the [parallel_tests documentation](https://github.com/grosser/parallel_tests)
+for more details.
+
 ## run[client]
 Runs client with paths leading to git. Useful to testing module without
 installation.
 
 ## console
-Runs ruby console with paths leading to git and YaST environment.
+Runs ruby console
+([irb](http://ruby-doc.org/stdlib-2.5.0/libdoc/irb/rdoc/IRB.html))
+with paths leading to git and YaST environment.
 
 ## pot
 Collect translatable strings and create `*.pot` files.
