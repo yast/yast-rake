@@ -16,8 +16,7 @@
 require "English"
 
 def parallel_rspec_installed?
-  `which parallel_rspec`
-  $CHILD_STATUS.success?
+  system("which parallel_rspec &> /dev/null")
 end
 
 def parallel_tests_wanted?
