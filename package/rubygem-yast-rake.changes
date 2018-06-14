@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Wed Jun 13 11:16:18 UTC 2018 - lslezak@suse.cz
+
+- Fallback to the standard "rspec" when "parallel_rspec" is not
+  available for running the tests in parallel (bsc#1094875)
+- 0.2.24
+
+-------------------------------------------------------------------
 Mon May 28 11:20:34 UTC 2018 - lslezak@suse.cz
 
 - Improved "test:unit" rake task - optionally allow running the
