@@ -12,6 +12,8 @@ dictionary:
   - aspell
   - raspell
   - rspec
+  - rubocop
+  - Rubocop
   - SLE
   # As part of YAST_SUBMIT
   - YAST

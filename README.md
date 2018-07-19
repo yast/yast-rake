@@ -52,6 +52,16 @@ Collect translatable strings and create `*.pot` files.
 ## check:pot
 Check for common mistakes in translated texts.
 
+## check:rubocop[options]
+Runs the Rubocop checker in parallel processes to speed up the check.
+The additional parameters to Rubocop can be passed via the `options`
+argument, e.g. `rake check:rubocop[-D]`.
+
+## check:rubocop:auto_correct[options]
+Similar to `check:rubocop` above, additionally it passes the auto correct
+parameter to Rubocop to try fixing the found issues (it is equivalent to
+`rake check:rubocop[-a]`).
+
 ## check:spelling
 Checks spelling in `*.md` and `*.html` files. It uses a global custom dictionary
 (file `lib/tasks/spell.dict` in this repository) and supports repository specific
