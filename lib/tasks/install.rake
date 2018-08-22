@@ -51,7 +51,7 @@ module Packaging
         "**/src/autoyast[_-]rnc/*"          => AUTOYAST_RNC_DIR,
         "**/src/fillup/*"                   => fillup_dir,
         "**/src/desktop/*.desktop"          => YAST_DESKTOP_DIR,
-        "{README*,COPYING,CONTRIBUTING.md}" => install_doc_dir,
+        "{README*,CONTRIBUTING.md}"         => install_doc_dir,
         "**/icons/*"                        => YAST_ICON_BASE_DIR
       }
     end

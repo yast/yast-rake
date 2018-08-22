@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Wed Aug 22 13:10:17 CEST 2018 - schubi@suse.de
+
+- Removed installation of file COPYING into the doc directory.
+  This file will be packed by the %license tag in the spec files.
+
+-------------------------------------------------------------------
 Fri Jun 22 14:05:30 UTC 2018 - lslezak@suse.cz
 
 - Added "check:rubocop" and "check:rubocop:auto_correct" tasks
