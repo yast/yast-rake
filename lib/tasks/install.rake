@@ -40,19 +40,19 @@ module Packaging
     # to FileUtils.cp_r as source and value as destination
     def install_locations
       @install_locations ||= {
-        "**/src/clients"                    => YAST_DIR,
-        "**/src/modules"                    => YAST_DIR,
-        "**/src/include"                    => YAST_DIR,
-        "**/src/lib"                        => YAST_DIR,
-        "**/src/scrconf"                    => YAST_DIR,
-        "**/src/data"                       => YAST_DIR,
-        "**/src/servers_non_y2"             => YAST_LIB_DIR,
-        "**/src/bin"                        => YAST_LIB_DIR,
-        "**/src/autoyast[_-]rnc/*"          => AUTOYAST_RNC_DIR,
-        "**/src/fillup/*"                   => fillup_dir,
-        "**/src/desktop/*.desktop"          => YAST_DESKTOP_DIR,
-        "{README*,CONTRIBUTING.md}"         => install_doc_dir,
-        "**/icons/*"                        => YAST_ICON_BASE_DIR
+        "**/src/clients"            => YAST_DIR,
+        "**/src/modules"            => YAST_DIR,
+        "**/src/include"            => YAST_DIR,
+        "**/src/lib"                => YAST_DIR,
+        "**/src/scrconf"            => YAST_DIR,
+        "**/src/data"               => YAST_DIR,
+        "**/src/servers_non_y2"     => YAST_LIB_DIR,
+        "**/src/bin"                => YAST_LIB_DIR,
+        "**/src/autoyast[_-]rnc/*"  => AUTOYAST_RNC_DIR,
+        "**/src/fillup/*"           => fillup_dir,
+        "**/src/desktop/*.desktop"  => YAST_DESKTOP_DIR,
+        "{README*,CONTRIBUTING.md}" => install_doc_dir,
+        "**/icons/*"                => YAST_ICON_BASE_DIR
       }
     end
 
