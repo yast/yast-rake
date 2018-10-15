@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Mon Oct 15 15:18:54 UTC 2018 - lslezak@suse.cz
+
+- Added CASP-4.0 target (needed for fate#325834)
+- 0.2.27
+
+-------------------------------------------------------------------
 Wed Aug 22 13:10:17 CEST 2018 - schubi@suse.de
 
 - Removed installation of file COPYING into the doc directory.
