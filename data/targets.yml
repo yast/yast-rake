@@ -41,6 +41,11 @@
   obs_project: "Devel:YaST:CASP:1.0"
   obs_sr_project: "SUSE:SLE-12-SP2:Update:Products:CASP10"
   obs_target: "CASP_1.0"
+:casp40:
+  obs_api: "https://api.suse.de/"
+  obs_project: "Devel:YaST:CASP:4.0"
+  obs_sr_project: "SUSE:SLE-15:Update:Products:CASP40"
+  obs_target: "CASP_4.0"
 :sle12sp3:
   obs_api: "https://api.suse.de/"
   obs_project: "Devel:YaST:SLE-12-SP3"
