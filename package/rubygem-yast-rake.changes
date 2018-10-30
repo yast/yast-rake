@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Tue Oct 30 07:47:42 UTC 2018 - lslezak@suse.cz
+
+- Changed the SLE12-SP4 SR target to the :Update subproject
+  (bsc#1113887)
+- 0.2.28
+
+-------------------------------------------------------------------
 Mon Oct 15 15:18:54 UTC 2018 - lslezak@suse.cz
 
 - Added CASP-4.0 target (needed for fate#325834)
