@@ -26,7 +26,7 @@ module Packaging
     DESTDIR = ENV["DESTDIR"] || "/"
     YAST_DIR = DESTDIR + "/usr/share/YaST2/"
     YAST_LIB_DIR = DESTDIR + "/usr/lib/YaST2/"
-    YAST_ICON_BASE_DIR = DESTDIR + "/usr/share/YaST2/theme/current/icons"
+    YAST_ICON_BASE_DIR = DESTDIR + "/usr/share/icons/"
     YAST_DESKTOP_DIR = DESTDIR + "/usr/share/applications/YaST2/"
     AUTOYAST_RNC_DIR = YAST_DIR + "schema/autoyast/rnc/"
 
