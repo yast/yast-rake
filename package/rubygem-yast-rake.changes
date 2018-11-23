@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Fri Nov 23 15:23:00 UTC 2018 - Stasiek Michalski <hellcp@mailbox.org>
+
+- Fix base dir for icons (boo#1109378)
+- 0.2.29
+
+-------------------------------------------------------------------
 Tue Oct 30 07:47:42 UTC 2018 - lslezak@suse.cz
 
 - Changed the SLE12-SP4 SR target to the :Update subproject
