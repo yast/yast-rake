@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Tue Nov 27 21:56:12 UTC 2018 - Stasiek Michalski <hellcp@mailbox.org>
+
+- Expose theme directory to allow for installation to theme
+  (boo#1108422)
+
+-------------------------------------------------------------------
 Fri Nov 23 15:23:00 UTC 2018 - Stasiek Michalski <hellcp@mailbox.org>
 
 - Fix base dir for icons (boo#1109378)

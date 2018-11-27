@@ -27,6 +27,7 @@ module Packaging
     YAST_DIR = DESTDIR + "/usr/share/YaST2/"
     YAST_LIB_DIR = DESTDIR + "/usr/lib/YaST2/"
     YAST_ICON_BASE_DIR = DESTDIR + "/usr/share/icons/"
+    YAST_THEME_DIR = YAST_DIR + "theme/"
     YAST_DESKTOP_DIR = DESTDIR + "/usr/share/applications/YaST2/"
     AUTOYAST_RNC_DIR = YAST_DIR + "schema/autoyast/rnc/"
 
@@ -52,7 +53,8 @@ module Packaging
         "**/src/fillup/*"           => fillup_dir,
         "**/src/desktop/*.desktop"  => YAST_DESKTOP_DIR,
         "{README*,CONTRIBUTING.md}" => install_doc_dir,
-        "**/icons/*"                => YAST_ICON_BASE_DIR
+        "**/icons/*"                => YAST_ICON_BASE_DIR,
+        "**/theme/*"                => YAST_THEME_DIR
       }
     end
 
