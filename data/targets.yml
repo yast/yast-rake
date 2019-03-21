@@ -70,6 +70,11 @@
   obs_project: "Devel:YaST:SLE-15"
   obs_sr_project: "SUSE:SLE-15:Update"
   obs_target: "SUSE_SLE-15_GA"
+:sle15sp1:
+  obs_api: "https://api.suse.de/"
+  obs_project: "Devel:YaST:SLE-15-SP1"
+  obs_sr_project: "SUSE:SLE-15-SP1:Update"
+  obs_target: "SUSE_SLE-15-SP1_Update"
 :sle_latest:
   obs_api: "https://api.suse.de/"
   obs_project: "Devel:YaST:Head"
