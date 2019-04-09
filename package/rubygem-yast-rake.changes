@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Tue Apr  9 12:34:45 UTC 2019 - Ladislav Slezák <lslezak@suse.cz>
+
+- Added the SLE12 SP5 target (bsc#1130043)
+- 0.2.22.1
+
+-------------------------------------------------------------------
 Thu Apr 19 08:56:23 UTC 2018 - jreidinger@suse.com
 
 - add SLE12 SP4 as target and switch sle_latest to nil for now
