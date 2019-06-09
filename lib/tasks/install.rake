@@ -28,7 +28,7 @@ module Packaging
     YAST_LIB_DIR = DESTDIR + "/usr/lib/YaST2/"
     YAST_ICON_BASE_DIR = DESTDIR + "/usr/share/icons/"
     YAST_THEME_DIR = YAST_DIR + "theme/"
-    YAST_DESKTOP_DIR = DESTDIR + "/usr/share/applications/YaST2/"
+    YAST_DESKTOP_DIR = DESTDIR + "/usr/share/applications/"
     AUTOYAST_RNC_DIR = YAST_DIR + "schema/autoyast/rnc/"
 
     # specific directory that contain dynamic part of package name
