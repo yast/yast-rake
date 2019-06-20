@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Thu Jun 20 11:39:40 UTC 2019 - Ladislav Slezák <lslezak@suse.cz>
+
+- :sle_latest is SLE15-SP2 now (bsc#1138835)
+- 0.2.33
+
+-------------------------------------------------------------------
 Wed Apr 10 10:36:06 UTC 2019 - Ladislav Slezák <lslezak@suse.cz>
 
 - Submit SLE12-SP5 to GA, it is still in the development mode
