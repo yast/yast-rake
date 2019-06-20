@@ -78,8 +78,8 @@
 :sle_latest:
   obs_api: "https://api.suse.de/"
   obs_project: "Devel:YaST:Head"
-  obs_sr_project: "SUSE:SLE-15-SP1:GA"
-  obs_target: "SUSE_SLE-15-SP1_GA"
+  obs_sr_project: "SUSE:SLE-15-SP2:GA"
+  obs_target: "SUSE_SLE-15-SP2_GA"
 :factory:
   obs_project: "YaST:Head"
   obs_sr_project: "openSUSE:Factory"
