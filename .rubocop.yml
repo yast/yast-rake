@@ -14,3 +14,6 @@ Metrics/AbcSize:
 Metrics/MethodLength:
   Max: 20
 
+# disable block length due to rspec DSL which is build from blocks
+Metrics/BlockLength:
+  Enabled: false

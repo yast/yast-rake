@@ -38,6 +38,8 @@ def run_parallel_tests(files)
     Coveralls::RakeTask.new
     Rake::Task["coveralls:push"].invoke
   end
+
+  nil
 end
 
 def run_sequential_tests(files)

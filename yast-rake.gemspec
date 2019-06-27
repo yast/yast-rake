@@ -19,8 +19,7 @@
 Gem::Specification.new do |spec|
   # gem name and description
   spec.name = "yast-rake"
-  spec.version  = File.read(File.expand_path("VERSION", __dir__)).chomp
-  spec.summary  = "Rake tasks that provide basic work-flow for Yast development"
+  spec.version = File.read(File.expand_path("VERSION", __dir__)).chomp
   spec.license = "LGPL v2.1"
 
   # author
@@ -29,11 +28,11 @@ Gem::Specification.new do |spec|
   spec.homepage = "https://github.com/yast/yast-rake"
 
   spec.summary = "Rake tasks providing basic work-flow for Yast development"
-  spec.description = <<~end
+  spec.description = <<~DESCRIPTION
     Rake tasks that support work-flow of Yast developer. It allows packaging repo,
     send it to build service, create submit request to target repo or run client
     from git repo.
-  end
+  DESCRIPTION
 
   # gem content
   spec.files = Dir["lib/**/*.rb", "lib/tasks/spell.yml", "lib/tasks/*.rake",
