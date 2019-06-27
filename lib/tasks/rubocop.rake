@@ -17,12 +17,14 @@
 
 def rubocop_bin
   return @rubocop_bin if @rubocop_bin
+  return @rubocop_bin = ENV["RUBOCOP_BIN"] if ENV["RUBOCOP_BIN"]
 
   version = system("grep 'rubocop-0.71.0' .rubocop.yml") ? "0.71.0" : "0.41.2"
   binary = `/usr/sbin/update-alternatives --list rubocop | grep '#{version}'`.strip
   if !system("which #{binary}")
     raise "cannot find proper version of rubocop binary in " \
-      "'/usr/sbin/update-alternatives --list rubocop'"
+      "'/usr/sbin/update-alternatives --list rubocop'." \
+      "If rubocop is installed via gem, define its binary name via env variable RUBOCOP_BIN."
   end
   @rubocop_bin = binary
 end
