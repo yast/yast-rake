@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Thu Jun 27 12:10:33 UTC 2019 - Josef Reidinger <jreidinger@suse.com>
+
+- support proper rubocop version in rake check:rubocop
+  (bsc#1139270) 
+- 0.2.34
+
+-------------------------------------------------------------------
 Thu Jun 20 11:39:40 UTC 2019 - Ladislav Slezák <lslezak@suse.cz>
 
 - :sle_latest is SLE15-SP2 now (bsc#1138835)
