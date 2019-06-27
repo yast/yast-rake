@@ -13,6 +13,16 @@
 #
 #++
 
+def rubocop_bin
+  return @rubocop_bin if @rubocop_bin
+  version = system("grep 'rubocop-0.71.0' .rubocop.yml") ? "0.71.0" : "0.41.2"
+  binary = `/usr/sbin/update-alternatives --list rubocop | grep '#{version}'`.strip
+  if !system("which #{binary}")
+    raise "cannot find proper version of rubocop binary in '/usr/sbin/update-alternatives --list rubocop'"
+  end
+  @rubocop_bin = binary
+end
+
 # run Rubocop in parallel
 # @param params [String] optional Rubocop parameters
 def run_rubocop(params = "")
@@ -26,8 +36,8 @@ def run_rubocop(params = "")
   #    a) use -P with number of processors to run the commands in parallel
   #    b) use -n to set the maximum number of files per process, this number
   #       is computed to equally distribute the files across the workers
-  sh "rubocop -L | sort -R | xargs -P`nproc` -n$(expr `rubocop -L | wc -l` / " \
-    "`nproc` + 1) rubocop #{params}"
+  sh "#{rubocop_bin} -L | sort -R | xargs -P`nproc` -n$(expr `#{rubocop_bin} -L | wc -l` / " \
+    "`nproc` + 1) #{rubocop_bin} #{params}"
 end
 
 namespace :check do
