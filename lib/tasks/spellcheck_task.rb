@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #--
 # Yast rake
 #
@@ -33,8 +35,8 @@ require "rake/tasklib"
 module Yast
   # Defines a spellcheck rake task
   class SpellcheckTask < Rake::TaskLib
-    GLOBAL_SPELL_CONFIG_FILE = File.expand_path("../spell.yml", __FILE__)
-    CUSTOM_SPELL_CONFIG_FILE = ".spell.yml".freeze
+    GLOBAL_SPELL_CONFIG_FILE = File.expand_path("spell.yml", __dir__)
+    CUSTOM_SPELL_CONFIG_FILE = ".spell.yml"
 
     # define the Rake task in the constructor
     def initialize
@@ -65,11 +67,12 @@ module Yast
     # @return [Aspell] the speller object
     def speller
       return @speller if @speller
+
       # raspell is an optional dependency, handle the missing case nicely
       begin
         require "raspell"
       rescue LoadError
-        $stderr.puts "ERROR: Ruby gem \"raspell\" is not installed."
+        warn "ERROR: Ruby gem \"raspell\" is not installed."
         exit 1
       end
 
@@ -105,9 +108,9 @@ module Yast
       duplicates = dict1 & dict2
       return if duplicates.empty?
 
-      $stderr.puts "Warning: Found dictionary duplicates in the local dictionary " \
+      warn "Warning: Found dictionary duplicates in the local dictionary " \
         "(#{CUSTOM_SPELL_CONFIG_FILE}):\n"
-      duplicates.each { |duplicate| $stderr.puts "  #{duplicate}" }
+      duplicates.each { |duplicate| warn "  #{duplicate}" }
       $stderr.puts
     end
 
@@ -161,6 +164,7 @@ module Yast
     def misspelled_on_line(text)
       switch_block_tag if block_line?(text)
       return [] if inside_block
+
       speller.list_misspelled([text]) - config["dictionary"]
     end
 
@@ -179,7 +183,7 @@ module Yast
       if files_to_check.all? { |file| check_file(file) }
         puts "Spelling OK."
       else
-        $stderr.puts "Spellcheck failed! (Fix it or add the words to " \
+        warn "Spellcheck failed! (Fix it or add the words to " \
           "'#{CUSTOM_SPELL_CONFIG_FILE}' file if it is OK.)"
         exit 1
       end

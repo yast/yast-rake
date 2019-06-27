@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #--
 # Yast rake
 #
@@ -36,7 +38,7 @@ Yast::Tasks.configuration do |conf|
 end
 
 # load own tasks
-task_path = File.expand_path("../../tasks", __FILE__)
+task_path = File.expand_path("../tasks", __dir__)
 Dir["#{task_path}/*.rake"].each do |f|
   load f
 end

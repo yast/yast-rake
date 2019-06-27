@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #--
 # Yast rake
 #
@@ -32,8 +34,9 @@ task :run, :client do |_t, args|
     clients = Dir["**/src/clients/*.rb"]
     client = clients.reduce do |min, n|
       next n if min.nil?
+
       # use client with shortest name by default
-      min.size > n.size ? n : min
+      (min.size > n.size) ? n : min
     end
   end
 

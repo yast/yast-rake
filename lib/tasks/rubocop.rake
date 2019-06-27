@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #--
 # Yast rake
 #
@@ -13,6 +15,20 @@
 #
 #++
 
+def rubocop_bin
+  return @rubocop_bin if @rubocop_bin
+  return @rubocop_bin = ENV["RUBOCOP_BIN"] if ENV["RUBOCOP_BIN"]
+
+  version = File.read(".rubocop.yml").include?("rubocop-0.71.0") ? "0.71.0" : "0.41.2"
+  binary = `/usr/sbin/update-alternatives --list rubocop | grep '#{version}'`.strip
+  if !system("which #{binary}")
+    raise "cannot find proper version of rubocop binary in " \
+      "'/usr/sbin/update-alternatives --list rubocop'." \
+      "If rubocop is installed via gem, define its binary name via env variable RUBOCOP_BIN."
+  end
+  @rubocop_bin = binary
+end
+
 # run Rubocop in parallel
 # @param params [String] optional Rubocop parameters
 def run_rubocop(params = "")
@@ -26,8 +42,8 @@ def run_rubocop(params = "")
   #    a) use -P with number of processors to run the commands in parallel
   #    b) use -n to set the maximum number of files per process, this number
   #       is computed to equally distribute the files across the workers
-  sh "rubocop -L | sort -R | xargs -P`nproc` -n$(expr `rubocop -L | wc -l` / " \
-    "`nproc` + 1) rubocop #{params}"
+  sh "#{rubocop_bin} -L | sort -R | xargs -P`nproc` -n$(expr `#{rubocop_bin} -L | wc -l` / " \
+    "`nproc` + 1) #{rubocop_bin} #{params}"
 end
 
 namespace :check do

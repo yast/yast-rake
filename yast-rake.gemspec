@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #--
 # Copyright (C) 2009, 2010 Novell, Inc.
 #   This library is free software; you can redistribute it and/or modify
@@ -16,22 +18,21 @@
 
 Gem::Specification.new do |spec|
   # gem name and description
-  spec.name	= "yast-rake"
-  spec.version	= File.read(File.expand_path("../VERSION", __FILE__)).chomp
-  spec.summary	= "Rake tasks that provide basic work-flow for Yast development"
+  spec.name = "yast-rake"
+  spec.version = File.read(File.expand_path("VERSION", __dir__)).chomp
   spec.license = "LGPL v2.1"
 
   # author
-  spec.author	= "Josef Reidinger"
-  spec.email	= "jreidinger@suse.cz"
-  spec.homepage	= "https://github.com/yast/yast-rake"
+  spec.author  = "Josef Reidinger"
+  spec.email = "jreidinger@suse.cz"
+  spec.homepage = "https://github.com/yast/yast-rake"
 
   spec.summary = "Rake tasks providing basic work-flow for Yast development"
-  spec.description = <<-end
-Rake tasks that support work-flow of Yast developer. It allows packaging repo,
-send it to build service, create submit request to target repo or run client
-from git repo.
-end
+  spec.description = <<~DESCRIPTION
+    Rake tasks that support work-flow of Yast developer. It allows packaging repo,
+    send it to build service, create submit request to target repo or run client
+    from git repo.
+  DESCRIPTION
 
   # gem content
   spec.files = Dir["lib/**/*.rb", "lib/tasks/spell.yml", "lib/tasks/*.rake",
@@ -41,6 +42,6 @@ end
   spec.require_path = "lib"
 
   # dependencies
-  spec.add_dependency("rake")
   spec.add_dependency("packaging_rake_tasks", ">= 1.1.4")
+  spec.add_dependency("rake")
 end
