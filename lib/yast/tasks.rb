@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #--
 # Yast rake
 #
@@ -23,7 +25,7 @@ module Yast
   # Yast::Task module contains helper methods
   module Tasks
     # Targets definition
-    TARGETS_FILE = File.expand_path("../../../data/targets.yml", __FILE__)
+    TARGETS_FILE = File.expand_path("../../data/targets.yml", __dir__)
 
     def self.configuration(&block)
       ::Packaging.configuration(&block)
@@ -34,7 +36,7 @@ module Yast
       # use the first *.spec file found, assume all spec files
       # contain the same version
       File.readlines(Dir.glob("package/*.spec").first)
-          .grep(/^\s*Version:\s*/).first.sub("Version:", "").strip
+        .grep(/^\s*Version:\s*/).first.sub("Version:", "").strip
     end
 
     def self.submit_to(target, file = TARGETS_FILE)
@@ -43,6 +45,7 @@ module Yast
       if config.nil?
         raise "No configuration found for #{target}. Known values: #{targets.keys.join(", ")}"
       end
+
       Yast::Tasks.configuration do |conf|
         config.each do |meth, val|
           conf.public_send("#{meth}=", val)

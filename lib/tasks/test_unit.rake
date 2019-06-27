@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #--
 # Yast rake
 #
@@ -56,7 +58,7 @@ namespace :test do
       run_parallel_tests(files)
     else
       if parallel_tests_wanted?
-        $stderr.puts "WARNING: parallel tests enabled, but 'parallel_rspec' is" \
+        warn "WARNING: parallel tests enabled, but 'parallel_rspec' is" \
         " not installed, falling back to the standard 'rspec' runner."
       end
       run_sequential_tests(files)

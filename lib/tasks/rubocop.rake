@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #--
 # Yast rake
 #
@@ -15,10 +17,12 @@
 
 def rubocop_bin
   return @rubocop_bin if @rubocop_bin
+
   version = system("grep 'rubocop-0.71.0' .rubocop.yml") ? "0.71.0" : "0.41.2"
   binary = `/usr/sbin/update-alternatives --list rubocop | grep '#{version}'`.strip
   if !system("which #{binary}")
-    raise "cannot find proper version of rubocop binary in '/usr/sbin/update-alternatives --list rubocop'"
+    raise "cannot find proper version of rubocop binary in " \
+      "'/usr/sbin/update-alternatives --list rubocop'"
   end
   @rubocop_bin = binary
 end

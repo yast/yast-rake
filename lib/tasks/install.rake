@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #--
 # Yast rake
 #
@@ -76,13 +78,13 @@ task :install do
   config.install_locations.each_pair do |glob, install_to|
     FileUtils.mkdir_p(install_to, verbose: true) unless File.directory?(install_to)
     Dir[glob].each do |source|
-      begin
-        # do not use FileUtils.cp_r as it have different behavior if target
-        # exists and we copy a symlink
-        sh "cp -r '#{source}' '#{install_to}'"
-      rescue => e
-        raise "Cannot install file #{source} to #{install_to}: #{e.message}"
-      end
+
+      # do not use FileUtils.cp_r as it have different behavior if target
+      # exists and we copy a symlink
+      sh "cp -r '#{source}' '#{install_to}'"
+    rescue StandardError => e
+      raise "Cannot install file #{source} to #{install_to}: #{e.message}"
+
     end
   end
 end

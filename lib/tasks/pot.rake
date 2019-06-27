@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #--
 # Yast rake
 #
@@ -27,16 +29,16 @@ end
 namespace :check do
   # print failed lines and a hint to STDERR
   def report_pot_errors(lines)
-    $stderr.puts "Failed lines:"
-    $stderr.puts "-" * 30
-    $stderr.puts lines
-    $stderr.puts "-" * 30
+    warn "Failed lines:"
+    warn "-" * 30
+    warn lines
+    warn "-" * 30
     $stderr.puts
-    $stderr.puts "Note: \#{foo} substitution in translatable strings does" \
+    warn "Note: \#{foo} substitution in translatable strings does" \
       " not work properly, use"
-    $stderr.puts "  _(\"foo %{bar} baz\") % { :bar => bar }"
-    $stderr.puts "or"
-    $stderr.puts "  _(\"foo %s baz\") % bar"
+    warn "  _(\"foo %{bar} baz\") % { :bar => bar }"
+    warn "or"
+    warn "  _(\"foo %s baz\") % bar"
     $stderr.puts
   end
 
