@@ -19,7 +19,7 @@ def rubocop_bin
   return @rubocop_bin if @rubocop_bin
   return @rubocop_bin = ENV["RUBOCOP_BIN"] if ENV["RUBOCOP_BIN"]
 
-  version = system("grep 'rubocop-0.71.0' .rubocop.yml") ? "0.71.0" : "0.41.2"
+  version = File.read(".rubocop.yml").include?("rubocop-0.71.0") ? "0.71.0" : "0.41.2"
   binary = `/usr/sbin/update-alternatives --list rubocop | grep '#{version}'`.strip
   if !system("which #{binary}")
     raise "cannot find proper version of rubocop binary in " \
