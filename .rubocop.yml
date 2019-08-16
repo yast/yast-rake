@@ -17,3 +17,9 @@ Metrics/MethodLength:
 # disable block length due to rake DSL which is build from blocks
 Metrics/BlockLength:
   Enabled: false
+
+Naming/MethodName:
+  Exclude:
+    # we cannot use different names for the "do_GET" methods because
+    # it is inherited from the parent class ("GET" refers to the HTTP request)
+    - lib/yast/*_servlet.rb
