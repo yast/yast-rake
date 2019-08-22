@@ -17,7 +17,7 @@
 
 
 Name:           rubygem-yast-rake
-Version:        0.2.34
+Version:        0.2.35
 Release:        0
 %define mod_name yast-rake
 %define mod_full_name %{mod_name}-%{version}
