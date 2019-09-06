@@ -63,8 +63,8 @@
 :sle12sp5:
   obs_api: "https://api.suse.de/"
   obs_project: "Devel:YaST:SLE-12-SP5"
-  obs_sr_project: "SUSE:SLE-12-SP5:GA"
-  obs_target: "SLE_12_SP5"
+  obs_sr_project: "SUSE:SLE-12-SP5:Update"
+  obs_target: "SUSE_SLE-12-SP5_Update"
 :sle15:
   obs_api: "https://api.suse.de/"
   obs_project: "Devel:YaST:SLE-15"
@@ -75,6 +75,11 @@
   obs_project: "Devel:YaST:SLE-15-SP1"
   obs_sr_project: "SUSE:SLE-15-SP1:Update"
   obs_target: "SUSE_SLE-15-SP1_Update"
+:sle15sp2:
+  obs_api: "https://api.suse.de/"
+  obs_project: "Devel:YaST:SLE-15-SP2"
+  obs_sr_project: "SUSE:SLE-15-SP2:Update"
+  obs_target: "SUSE_SLE-15-SP2_Update"
 :sle_latest:
   obs_api: "https://api.suse.de/"
   obs_project: "Devel:YaST:Head"
