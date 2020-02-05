@@ -37,7 +37,8 @@ module Yast
     def source_archive
       # pack all Git files (including the non-tracked files (-o),
       # use --ignore-failed-read to not fail for removed files)
-      `git ls-files -c -o -z | tar --ignore-failed-read -c --null --files-from - | #{gzip}`
+      # -z and --null: NUL-delimited
+      `git ls-files --cached --others -z | tar --create --ignore-failed-read --null --files-from - | #{gzip}`
     end
 
     # find which gzip is installed, use the faster parallel gzip ("pigz") if it is available
