@@ -47,8 +47,7 @@ module Yast
       return @gzip if @gzip
 
       # parallel gzip installed?
-      system("which pigz")
-      @gzip = $CHILD_STATUS.success? ? "pigz" : "gzip"
+      @gzip = system("which pigz") ? "pigz" : "gzip"
     end
   end
 end

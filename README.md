@@ -83,17 +83,23 @@ These commands should work:
 ## server
 Runs a simple web server which provides a dynamically generated tarball with
 the source code. The web server is designed to serve the source tarballs for
-the `yupdate` script which can easily update the YaST code from your local
-Git checkout.
-<!-- TODO: add a link to the yupdate script later -->
+the [`yupdate`](https://github.com/lslezak/scripts/tree/yupdate_refactoring/yast/yupdate)
+script which can easily update the YaST code in the installation system.
 
-By default it runs the web server on port 8000, if that port is already used
+That script downloads a source tarball from GitHub, to make it work also with
+your local Git checkout we need to implement a compatible HTTP tarball provider.
+
+By default the web server runs on port 8000, if that port is already used
 it tries using port 8001 and so on until a free port is found. This allows
 starting several servers in parallel easily.
 
 If you need to use a different port you can pass it as an optional argument:
 
     rake server[9999]
+
+To install the files in a running installation run
+
+    yupdate patch my_machine.example.com:8000
 
 To allow accessing the web server from other machines you need to open the
 appropriate port in the firewall configuration. You can open some more spare
