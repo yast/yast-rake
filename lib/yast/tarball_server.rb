@@ -103,7 +103,7 @@ module Yast
     # find a free port starting from the default port number
     # @return [Integer] the free port number
     def find_port
-      DEFAULT_HTTP_PORT.step.find { |p| !port_taken?(p)}
+      DEFAULT_HTTP_PORT.step.find { |p| !port_taken?(p) }
     end
   end
 end

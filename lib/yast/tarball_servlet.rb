@@ -38,7 +38,9 @@ module Yast
       # pack all Git files (including the non-tracked files (-o),
       # use --ignore-failed-read to not fail for removed files)
       # -z and --null: NUL-delimited
-      `git ls-files --cached --others -z | tar --create --ignore-failed-read --null --files-from - | #{gzip}`
+      git = "git ls-files --cached --others -z"
+      tar = "tar --create --ignore-failed-read --null --files-from -"
+      `#{git} | #{tar} | #{gzip}`
     end
 
     # find which gzip is installed, use the faster parallel gzip ("pigz") if it is available
