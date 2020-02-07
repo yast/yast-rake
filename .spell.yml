@@ -7,6 +7,9 @@
 ---
 dictionary:
   - CPUs
+  - Ctrl
+  - cmd
+  - json
   # The Yast namespace, the whole tool is spelled YaST!
   - Yast
   - aspell
@@ -15,5 +18,7 @@ dictionary:
   - rubocop
   - Rubocop
   - SLE
+  - tcp
   # As part of YAST_SUBMIT
   - YAST
+  - yupdate

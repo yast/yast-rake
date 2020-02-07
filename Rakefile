@@ -69,5 +69,6 @@ end
 
 Yast::Tasks.configuration do |conf|
   conf.package_name = "rubygem-yast-rake"
+  conf.skip_license_check << /data\/index.html/
 end
 # vim: ft=ruby
