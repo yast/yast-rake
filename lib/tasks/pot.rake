@@ -27,19 +27,36 @@ task :pot do
 end
 
 namespace :check do
+
+  def interpolation_message
+    <<~MSG
+      Note: \#{foo} substitution in translatable strings does
+      not work properly, use
+        _("foo %{bar} baz") % { :bar => bar }
+      or
+        _("foo %s baz") % bar
+    MSG
+  end
+
+  def angle_brackets_message
+    <<~MSG
+      Note: %<foo> placeholder should not be used in translatable strings
+      because GNU Gettext does not support any suitable language format for that,
+      use %{foo} instead.
+    MSG
+  end
+
   # print failed lines and a hint to STDERR
-  def report_pot_errors(lines)
+  def report_pot_errors(lines, message)
+    return if lines.empty?
+
     warn "Failed lines:"
     warn "-" * 30
     warn lines
     warn "-" * 30
-    $stderr.puts
-    warn "Note: \#{foo} substitution in translatable strings does" \
-      " not work properly, use"
-    warn "  _(\"foo %{bar} baz\") % { :bar => bar }"
-    warn "or"
-    warn "  _(\"foo %s baz\") % bar"
-    $stderr.puts
+    warn ""
+    warn message
+    warn ""
   end
 
   # remove gettext keywords and extra quotes
@@ -53,7 +70,9 @@ namespace :check do
   end
 
   desc "Check translatable strings for common mistakes"
-  # depends on the global "pot" task defined above
+  # depends on the global "pot" task defined above,
+  # this scans for the #{} interpolations (do not work in translations)
+  # and %<> (no compatible language format in Gettext)
   task pot: :"rake:pot" do
     Dir["*.pot"].each do |pot|
       puts "Checking #{pot}..."
@@ -61,14 +80,18 @@ namespace :check do
       # remove comments
       lines.reject! { |line| line.match(/^#/) }
       # Ruby substitution present?
-      lines.select! { |line| line.include?("\#{") }
+      interpolations = lines.select { |line| line.include?("\#{") }
+      angle_brackets = lines.select { |line| line.include?("%<") }
 
-      clean_pot_lines(lines)
+      next if interpolations.empty? && angle_brackets.empty?
 
-      if !lines.empty?
-        report_pot_errors(lines)
-        raise "ERROR: Ruby substitution found in a translatable string"
-      end
+      clean_pot_lines(interpolations)
+      clean_pot_lines(angle_brackets)
+
+      report_pot_errors(interpolations, interpolation_message)
+      report_pot_errors(angle_brackets, angle_brackets_message)
+
+      raise "ERROR: Found invalid or unsupported translatable string"
     end
   end
 end
