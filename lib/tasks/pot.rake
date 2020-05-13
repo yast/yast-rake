@@ -32,9 +32,9 @@ namespace :check do
     <<~MSG
       Note: \#{foo} substitution in translatable strings does
       not work properly, use
-        _(\"foo %{bar} baz\") % { :bar => bar }
+        _("foo %{bar} baz") % { :bar => bar }
       or
-        _(\"foo %s baz\") % bar
+        _("foo %s baz") % bar
     MSG
   end
 
