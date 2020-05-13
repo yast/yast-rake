@@ -41,7 +41,7 @@ namespace :check do
   def angle_brackets_message
     <<~MSG
       Note: %<foo> placeholder should not be used in translatable strings
-      because GNU Gettext does support any suitable language format for that,
+      because GNU Gettext does not support any suitable language format for that,
       use %{foo} instead.
     MSG
   end
