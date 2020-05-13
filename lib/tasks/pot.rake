@@ -29,17 +29,21 @@ end
 namespace :check do
 
   def interpolation_message
-    "Note: \#{foo} substitution in translatable strings does\n" \
-    "not work properly, use\n" \
-    "  _(\"foo %{bar} baz\") % { :bar => bar }\n" \
-    "or\n" \
-    "  _(\"foo %s baz\") % bar\n\n"
+    <<~MSG
+      Note: \#{foo} substitution in translatable strings does
+      not work properly, use
+        _(\"foo %{bar} baz\") % { :bar => bar }
+      or
+        _(\"foo %s baz\") % bar
+    MSG
   end
 
   def angle_brackets_message
-    "Note: %<foo> placeholder should not be used in translatable strings\n" \
-    "because GNU Gettext does support any suitable language format for that,\n" \
-    "use %{foo} instead.\n\n"
+    <<~MSG
+      Note: %<foo> placeholder should not be used in translatable strings
+      because GNU Gettext does support any suitable language format for that,
+      use %{foo} instead.
+    MSG
   end
 
   # print failed lines and a hint to STDERR
@@ -52,6 +56,7 @@ namespace :check do
     warn "-" * 30
     warn ""
     warn message
+    warn ""
   end
 
   # remove gettext keywords and extra quotes
