@@ -29,8 +29,8 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  %{ruby}
 BuildRequires:  ruby-macros >= 5
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:gem2rpm)
-URL:            http://github.org/openSUSE/yast-rake
-Source:         http://rubygems.org/gems/%{mod_full_name}.gem
+URL:            https://github.com/yast/yast-rake
+Source:         https://rubygems.org/gems/%{mod_full_name}.gem
 Summary:        Rake tasks providing basic work-flow for Yast development
 License:        LGPL-2.1-only
 Group:          Development/Languages/Ruby
