@@ -1,7 +1,7 @@
 # Yast::Rake
 
-[![Travis Build](https://travis-ci.org/yast/yast-rake.svg?branch=master)](https://travis-ci.org/yast/yast-rake)
-
+[![Workflow Status](https://github.com/yast/yast-rake/workflows/CI/badge.svg?branch=master)](
+https://github.com/yast/yast-rake/actions?query=branch%3Amaster)
 
 Rake tasks to help with uniform handling of yast modules. It provides setup for
 [packaging tasks](http://github.com/openSUSE/packaging_tasks) and add yast specific tasks.
