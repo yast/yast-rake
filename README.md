@@ -9,7 +9,7 @@ Rake tasks to help with uniform handling of yast modules. It provides setup for
 # Quick Start
 
 Create Rakefile with content:
-```
+```ruby
   require "yast/rake"
 ```
 Now lets check what it provides with `rake -T`
@@ -39,7 +39,31 @@ for more details.
 
 ## run[client]
 Runs client with paths leading to git. Useful to testing module without
-installation.
+installation. If the client is not specified it starts the client
+with the shortest name.
+
+## run:container[client]
+Similar to `run[client]` above, but the client is started in a Docker container.
+
+The container is automatically removed after the client exits. If you want to
+keep the container running use the `KEEP_CONTAINER` option:
+
+```console
+rake run:container KEEP_CONTAINER=1
+```
+
+The used Docker image is extracted from the GitHub Actions configuration.
+If there is no configuration or there are used multiple images then you can
+set the Docker image explicitly:
+
+```console
+rake run:container DOCKER_IMAGE=<image>
+```
+
+**Note:** The Docker environment is quite different than in usually installed
+Linux systems (no services running, no systemd, no boot loader, no hardware
+access,...) so not all YaST modules can work properly there. Or there might
+be missing dependencies so YaST might report errors or even crash.
 
 ## console
 Runs ruby console
@@ -118,6 +142,57 @@ reboot you need to run both commands.*
 
 To stop the server press the Ctrl+C key combination.
 
+## actions:list
+Print the defined GitHub Action jobs. The jobs are listed in a form of `rake`
+commands which can be used to start them locally.
+
+## actions:details
+Print the details of the defined GitHub Action jobs.
+
+## actions:run:all
+Run all defined GitHub Actions locally. The unsupported jobs are automatically
+skipped. See more details about the GitHub Actions below.
+
+## actions:run[job]
+Run the specified GitHub Action job locally. If the job is not supported
+an error is reported. See more details about the GitHub Actions below.
+
+
+# GitHub Actions
+
+The [GitHub Actions](https://docs.github.com/en/actions) provide a lot of
+[features](https://github.com/features/actions) to run CI/CD. The `actions:run`
+tasks only support the features used by YaST, that is a very small subset.
+
+If you need support for more Actions features then check the
+[act](https://github.com/nektos/act) tool.
+
+## Special Options
+
+The used Docker container is automatically removed after the job is finished.
+If you want to keep the container running use the `KEEP_CONTAINER` option:
+
+```console
+rake actions:run[<action>] KEEP_CONTAINER=1
+```
+
+The rake task then prints some hints how to connect to the running container.
+The container needs to be stopped and removed manually.
+
+The used Docker image is extracted from the GitHub Actions configuration.
+You can override the image name with the `DOCKER_IMAGE` option:
+
+```console
+rake actions:run[<action>] DOCKER_IMAGE=<image>
+```
+
+For the `actions:run:all` task the `DOCKER_IMAGE` option can be used only if all
+jobs use the same Docker image. If more than one image is used then it is very
+unlikely that all jobs will work with the same custom image.
+
+If you are sure that the same image can be used then the workaround is to run
+the jobs manually one by one.
+
 # Customizing
 
 Yast::Tasks provides a method to change the configuration of the packaging
@@ -136,7 +211,7 @@ configuration at once, just specifying the name of one of the available
 [target definitions](https://github.com/yast/yast-rake/blob/master/data/targets.yml).
 For example, if you want to submit to SLE 12 Service Pack 1, you can do:
 
-```
+```ruby
   Yast::Tasks.submit_to(:sle12sp1)
 ```
 
