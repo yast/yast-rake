@@ -149,23 +149,21 @@ commands which can be used to start them locally.
 ## actions:details
 Print the details of the defined GitHub Action jobs.
 
-## actions:run:all
-Run all defined GitHub Actions locally. The unsupported jobs are automatically
-skipped. See more details about the GitHub Actions below.
-
 ## actions:run[job]
-Run the specified GitHub Action job locally. If the job is not supported
-an error is reported. See more details about the GitHub Actions below.
+Run the specified GitHub Action job or all jobs locally. It runs all jobs if
+the `job` argument is missing. In that case the unsupported jobs are
+automatically skipped, if the specified job is not supported an error is reported.
 
 
-# GitHub Actions
+# Notes to GitHub Actions
 
 The [GitHub Actions](https://docs.github.com/en/actions) provide a lot of
 [features](https://github.com/features/actions) to run CI/CD. The `actions:run`
 tasks only support the features used by YaST, that is a very small subset.
 
 If you need support for more Actions features then check the
-[act](https://github.com/nektos/act) tool.
+[act](https://github.com/nektos/act) tool. (Hints: `git clone`,
+`zypper install go`, `make`, `dist/local/act --help`)
 
 ## Special Options
 
@@ -186,8 +184,8 @@ You can override the image name with the `DOCKER_IMAGE` option:
 rake actions:run[<action>] DOCKER_IMAGE=<image>
 ```
 
-For the `actions:run:all` task the `DOCKER_IMAGE` option can be used only if all
-jobs use the same Docker image. If more than one image is used then it is very
+The `DOCKER_IMAGE` option can be used for running all jobs only if all of them
+use the same Docker image. If more than one image is used then it is very
 unlikely that all jobs will work with the same custom image.
 
 If you are sure that the same image can be used then the workaround is to run

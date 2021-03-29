@@ -40,7 +40,8 @@ module GithubActions
       @file = file
       yml = YAML.load_file(file)
       @name = yml["name"]
-      # "on" is autoconverted to Boolean "true"!
+      # "on" is autoconverted to Boolean "true" for this line
+      #   on: [push, pull_request]
       # see https://medium.com/@lefloh/lessons-learned-about-yaml-and-norway-13ba26df680
       @on = yml[true]
 

@@ -35,13 +35,10 @@ namespace :actions do
   desc "Run the specified GitHub Action job locally"
   task :run, [:job] do |_task, args|
     name = args[:job]
-    abort "ERROR: Missing job name argument" if name.nil? || name.empty?
-
-    GithubActions::Tasks::Run.new(name).run
-  end
-
-  desc "Run all supported GitHub Action jobs locally"
-  task :"run:all" do
-    GithubActions::Tasks::RunAll.new.run
+    if name.nil? || name.empty?
+      GithubActions::Tasks::RunAll.new.run
+    else
+      GithubActions::Tasks::Run.new(name).run
+    end
   end
 end
