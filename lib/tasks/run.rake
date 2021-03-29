@@ -18,6 +18,8 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #++
 
+require_relative "container_runner"
+
 def set_y2dir
   dirs = Dir["**/src"]
   dirs << ENV["Y2DIR"] if ENV["Y2DIR"] && !ENV["Y2DIR"].empty?
@@ -44,6 +46,15 @@ task :run, :client do |_t, args|
 
   set_y2dir
   sh "/sbin/yast2 #{client}"
+end
+
+desc "Run given client in a Docker container"
+task :"run:container", :client do |_t, args|
+  args.with_defaults = { client: nil }
+  client = args[:client]
+
+  runner = ContainerRunner.new
+  runner.run(client)
 end
 
 desc "Runs console with preloaded module directories"
