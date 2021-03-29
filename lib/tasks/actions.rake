@@ -32,7 +32,7 @@ namespace :actions do
     GithubActions::Tasks::Details.new.run
   end
 
-  desc "Run the specified GitHub Action job locally"
+  desc "Run locally the specified GitHub Action job (all jobs if \"job\" is empty)"
   task :run, [:job] do |_task, args|
     name = args[:job]
     if name.nil? || name.empty?
