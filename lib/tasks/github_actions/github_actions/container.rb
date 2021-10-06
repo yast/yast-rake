@@ -26,7 +26,7 @@ module GithubActions
   class Container
     include Colorizer
 
-    attr_reader :image, :container
+    attr_reader :image, :options, :container
 
     # the default timeout in seconds, maximum time for the running container,
     # after the time runs out the container is automatically stopped and removed
@@ -43,8 +43,10 @@ module GithubActions
 
     # constructor
     # @param image [String] name of the Docker image to use
-    def initialize(image)
+    # @param options [String, nil] extra docker options
+    def initialize(image, options = nil)
       @image = image
+      @options = options
     end
 
     # pull the Docker image, ensure that the latest version is used
@@ -73,7 +75,7 @@ module GithubActions
       end
 
       cmd = "docker create #{env_options(ENV_VARIABLES)} --rm --entrypoint " \
-        "#{run} #{image.shellescape} #{args}"
+        "#{run} #{options} #{ENV["DOCKER_OPTIONS"]} #{image.shellescape} #{args}"
 
       # contains the container ID
       @container = `#{cmd}`.chomp

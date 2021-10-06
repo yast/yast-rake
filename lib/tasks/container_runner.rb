@@ -28,8 +28,7 @@ class ContainerRunner
   # @param client [String,nil] the client name, nil or empty string = find
   #   the client automatically
   def run(client)
-    image = find_image
-    container = GithubActions::Container.new(image)
+    container = find_container
     container.pull
     container.start
     container.copy_current_dir
@@ -44,16 +43,16 @@ private
 
   # find the Docker image to use in the container
   # @return [String] the image name
-  def find_image
+  def find_container
     # explicitly requested image
     image = ENV["DOCKER_IMAGE"]
-    return image if image && !image.empty?
+    return GithubActions::Container.new(image) if image && !image.empty?
 
     # scan the Docker images used in the GitHub Actions
-    images = workflow_images
-    return images.first if images.size == 1
+    containers = workflow_containers
+    return containers.first if containers.size == 1
 
-    if images.empty?
+    if containers.empty?
       error("No Docker image was found in the GitHub Actions")
       puts "Use DOCKER_IMAGE=<name> option for specifying the image name"
       abort
@@ -61,20 +60,36 @@ private
 
     # multiple images found
     error("Found multiple Docker images in the GitHub Actions:")
-    error(images.inspect)
+    error(containers.map { |c| [c.image, c.options] })
     puts "Use DOCKER_IMAGE=<name> option for specifying the image name"
+    puts "and DOCKER_OPTIONS=<options> option for specifying the extra Docker"
+    puts "command line parameters."
     abort
   end
 
   # extract the Docker images from the GitHub Actions,
   # the duplicates are removed
-  # @return [Array<String>] image names
-  def workflow_images
-    GithubActions::Workflow.read.each_with_object([]) do |workflow, images|
+  # @return [Array<GithubActions::Container>] image names
+  def workflow_containers
+    ret = GithubActions::Workflow.read.each_with_object([]) do |workflow, containers|
       workflow.jobs.each do |job|
-        container = job.container
-        images << container if container && !images.include?(container)
+        container_data = job.container
+
+        if container_data.is_a?(String)
+          containers << GithubActions::Container.new(container_data)
+        elsif container_data.is_a?(Hash)
+          # to_s converts missing options (nil) to empty options ("")
+          # to treat these as equal in comparison
+          containers << GithubActions::Container.new(
+            container_data["image"],
+            container_data["options"].to_s
+          )
+        else
+          abort "Unsupported container definition: #{container_data.inspect}"
+        end
       end
     end
+
+    ret.uniq { |c| [c.image, c.options] }
   end
 end
