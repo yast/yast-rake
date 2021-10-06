@@ -58,10 +58,27 @@ module GithubActions
 
     # pull the Docker image and start the container
     def start_container
-      # prefer the custom image if requested
-      @container = Container.new(image || job.container)
+      @container = find_container
       container.pull
       container.start
+    end
+
+    # Get the container configuration
+    # @return [Container] container which should run the job
+    def find_container
+      # prefer the custom image if requested
+      image_name = if image
+        image
+      elsif job.container.is_a?(String)
+        job.container
+      elsif job.container.is_a?(Hash)
+        options = job.container["options"]
+        job.container["image"]
+      else
+        abort "Unsupported container definition: #{job.container.inspect}"
+      end
+
+      Container.new(image_name, options.to_s)
     end
 
     # run a job step
