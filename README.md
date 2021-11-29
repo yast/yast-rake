@@ -142,7 +142,7 @@ reboot you need to run both commands.*
 
 To stop the server press the Ctrl+C key combination.
 
-Note: For ruby3 and newer separate webrick rubygem is needed to be installed.
+Note: For Ruby 3 and newer separate webrick rubygem is needed to be installed.
 
 ## actions:list
 Print the defined GitHub Action jobs. The jobs are listed in a form of `rake`
