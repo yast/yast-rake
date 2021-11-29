@@ -26,8 +26,8 @@ end
 
 # load server only if webrick is available
 if defined?(Yast::TarballServer)
-# Rake task for running a source code web server,
-# designed for the `yupdate` script.
+  # Rake task for running a source code web server,
+  # designed for the `yupdate` script.
   desc "Start an HTTP server providing dynamically generated source code tarball"
   task :server, [:port] do |_task, args|
     server = Yast::TarballServer.new(args[:port])
