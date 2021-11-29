@@ -17,8 +17,10 @@ dictionary:
   - rspec
   - rubocop
   - Rubocop
+  - rubygem
   - SLE
   - tcp
+  - webrick
   # As part of YAST_SUBMIT
   - YAST
   - yupdate
