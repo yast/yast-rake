@@ -15,12 +15,24 @@
 #
 #++
 
+# the default old version used
+OLD_RUBOCOP_VERSION = "0.41.2"
+
+def rubocop_version
+  return @rubocop_version if @rubocop_version
+
+  @rubocop_version = if File.read(".rubocop.yml").match(/rubocop-(\d+\.\d+\.\d+)/)
+    Regexp.last_match[1]
+  else
+    OLD_RUBOCOP_VERSION
+  end
+end
+
 def rubocop_bin
   return @rubocop_bin if @rubocop_bin
   return @rubocop_bin = ENV["RUBOCOP_BIN"] if ENV["RUBOCOP_BIN"]
 
-  version = File.read(".rubocop.yml").include?("rubocop-0.71.0") ? "0.71.0" : "0.41.2"
-  binary = `/usr/sbin/update-alternatives --list rubocop | grep '#{version}'`.strip
+  binary = `/usr/sbin/update-alternatives --list rubocop | grep '#{rubocop_version}'`.strip
   if !system("which #{binary}")
     raise "cannot find proper version of rubocop binary in " \
       "'/usr/sbin/update-alternatives --list rubocop'." \
@@ -32,18 +44,26 @@ end
 # run Rubocop in parallel
 # @param params [String] optional Rubocop parameters
 def run_rubocop(params = "")
-  # how it works:
-  # 1) get the list of inspected files by Rubocop
-  # 2) shuffle it randomly (better would be evenly distribute them according to
-  #    the analysis complexity but that is hard to evaluate and even simply
-  #    distributing by file size turned out to be ineffective and slower than
-  #    a simple random shuffling)
-  # 3) pass that as input for xargs
-  #    a) use -P with number of processors to run the commands in parallel
-  #    b) use -n to set the maximum number of files per process, this number
-  #       is computed to equally distribute the files across the workers
-  sh "#{rubocop_bin} -L | sort -R | xargs -P`nproc` -n$(expr `#{rubocop_bin} -L | wc -l` / " \
-    "`nproc` + 1) #{rubocop_bin} #{params}"
+  # newer Rubocop versions support the "-P" ("--parallel") option,
+  # but that is not compatible with the "-a" ("--auto-correct") option
+  if rubocop_version != OLD_RUBOCOP_VERSION && !params.to_s.match(/-a|--auto-correct/)
+    sh "#{rubocop_bin} -P #{params}"
+  else
+    # for older Rubocop or auto-correct mode manually start multiple instances in parallel
+    #
+    # how it works:
+    # 1) get the list of inspected files by Rubocop
+    # 2) shuffle it randomly (better would be evenly distribute them according to
+    #    the analysis complexity but that is hard to evaluate and even simply
+    #    distributing by file size turned out to be ineffective and slower than
+    #    a simple random shuffling)
+    # 3) pass that as input for xargs
+    #    a) use -P with number of processors to run the commands in parallel
+    #    b) use -n to set the maximum number of files per process, this number
+    #       is computed to equally distribute the files across the workers
+    sh "#{rubocop_bin} -L | sort -R | xargs -P`nproc` -n$(expr `#{rubocop_bin} -L | wc -l` / " \
+      "`nproc` + 1) #{rubocop_bin} #{params}"
+  end
 end
 
 namespace :check do
