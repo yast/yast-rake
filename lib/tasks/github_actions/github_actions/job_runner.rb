@@ -78,7 +78,23 @@ module GithubActions
         abort "Unsupported container definition: #{job.container.inspect}"
       end
 
-      Container.new(image_name, options.to_s)
+      Container.new(expand_name(image_name), options.to_s)
+    end
+
+    # replace the ${{ matrix.<value> }} placeholders in the image name
+    #
+    # @param image_name [String] name of the Docker image
+    # @return [String] name with replaced values
+    def expand_name(image_name)
+      image_name.gsub(/\$\{\{\s*matrix\.[^}]*\}\}/) do |subst|
+        name = /\$\{\{\s*matrix\.([^}]*)\}\}/.match(subst)[1].strip
+        value = job.matrix ? job.matrix[name] : subst
+
+        # if the value is an Array use the first value by default
+        replacement = value.is_a?(Array) ? value.first : value.to_s
+        puts "Using ${{matrix.#{name}}} value: #{replacement.inspect}"
+        replacement
+      end
     end
 
     # run a job step

@@ -22,7 +22,7 @@ module GithubActions
   # Github Actions job
   # @see https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions
   class Job
-    attr_reader :name, :steps, :runs_on, :container, :workflow
+    attr_reader :name, :steps, :runs_on, :container, :workflow, :matrix
 
     # @param name [String] name of the job
     # @param data [Hash] data from the workflow YAML file
@@ -32,6 +32,7 @@ module GithubActions
       @runs_on = data["runs-on"]
       @container = data["container"]
       @workflow = workflow
+      @matrix = data.fetch("strategy", {})["matrix"]
 
       @steps = data["steps"].map do |step|
         Step.new(self, step)

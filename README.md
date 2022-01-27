@@ -163,6 +163,11 @@ The [GitHub Actions](https://docs.github.com/en/actions) provide a lot of
 [features](https://github.com/features/actions) to run CI/CD. The `actions:run`
 tasks only support the features used by YaST, that is a very small subset.
 
+The Docker image name can contain the `${{ matrix.<name> }}` placeholders, these
+are replaced by the *first* value found in the `strategy/matrix` job data. To use
+the other values than the first one specify the full image name via the
+`DOCKER_IMAGE` option, see below.
+
 If you need support for more Actions features then check the
 [act](https://github.com/nektos/act) tool. (Hints: `git clone`,
 `zypper install go`, `make`, `dist/local/act --help`)
