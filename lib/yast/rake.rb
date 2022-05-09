@@ -30,6 +30,11 @@ ptask.enhance(prerequisites)
 
 yast_submit = ENV["YAST_SUBMIT"] || :factory
 Yast::Tasks.submit_to(yast_submit.to_sym)
+namespace :osc do
+  # This adds to existing desc
+  desc "Try YAST_SUBMIT=help rake...."
+  task :build
+end
 
 Yast::Tasks.configuration do |conf|
   conf.package_name = File.read("RPMNAME").strip if File.exist?("RPMNAME")
