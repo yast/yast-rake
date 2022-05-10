@@ -22,14 +22,19 @@ require_relative "tasks"
 
 # yast integration testing takes too long and require osc:build so it create
 # circle, so replace test dependency with test:unit
-task = Rake::Task["package"]
-prerequisites = task.prerequisites
+ptask = Rake::Task["package"]
+prerequisites = ptask.prerequisites
 prerequisites.delete("test")
 
-task.enhance(prerequisites)
+ptask.enhance(prerequisites)
 
 yast_submit = ENV["YAST_SUBMIT"] || :factory
 Yast::Tasks.submit_to(yast_submit.to_sym)
+namespace :osc do
+  # This adds to existing desc
+  desc "Try YAST_SUBMIT=help rake...."
+  task :build
+end
 
 Yast::Tasks.configuration do |conf|
   conf.package_name = File.read("RPMNAME").strip if File.exist?("RPMNAME")
