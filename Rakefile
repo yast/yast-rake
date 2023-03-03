@@ -20,6 +20,8 @@
 
 require_relative "lib/yast/rake"
 
+Yast::Tasks.submit_to :sle15sp5
+
 # remove tarball implementation and create gem for this gemfile
 Rake::Task[:tarball].clear
 # build the gem package
