@@ -40,6 +40,9 @@ module Yast
     end
 
     def self.submit_to(target, file = TARGETS_FILE)
+      # override the target via environment
+      target = ENV["YAST_SUBMIT"].to_sym if ENV["YAST_SUBMIT"]
+
       targets = YAML.load_file(file)
       config = targets[target]
       if config.nil?

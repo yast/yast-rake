@@ -47,10 +47,3 @@ task_path = File.expand_path("../tasks", __dir__)
 Dir["#{task_path}/*.rake"].each do |f|
   load f
 end
-
-# optionally load the tasks from yast-rake-ci if it is installed
-begin
-  require "yast/rake_ci"
-rescue LoadError
-  puts "INFO: Gem yast-rake-ci not installed, extra tasks not loaded" if verbose == true
-end
