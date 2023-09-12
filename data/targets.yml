@@ -95,11 +95,12 @@
   obs_project: "Devel:YaST:SLE-15-SP5"
   obs_sr_project: "SUSE:SLE-15-SP5:Update"
   obs_target: "SUSE_SLE-15-SP5_Update"
+# SP6 is still in development so point to GA and switch when it will be released.
 :sle15sp6:
   obs_api: "https://api.suse.de/"
   obs_project: "Devel:YaST:SLE-15-SP6"
-  obs_sr_project: "SUSE:SLE-15-SP6:Update"
-  obs_target: "SUSE_SLE-15-SP6_Update"
+  obs_sr_project: "SUSE:SLE-15-SP6:GA"
+  obs_target: "SUSE_SLE-15-SP6_GA"
 :sle15sp7:
   obs_api: "https://api.suse.de/"
   obs_project: "Devel:YaST:SLE-15-SP7"
