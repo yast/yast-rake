@@ -35,7 +35,7 @@ task :run, :client do |_t, args|
   else
     clients = Dir["**/src/clients/*.rb"]
     client = clients.reduce do |min, n|
-      next n if min.nil?
+      min ||= n
 
       # use client with shortest name by default
       (min.size > n.size) ? n : min

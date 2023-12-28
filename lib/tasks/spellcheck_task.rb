@@ -40,6 +40,8 @@ module Yast
 
     # define the Rake task in the constructor
     def initialize
+      super
+
       namespace :check do
         desc "Run spell checker (by default for *.md and *.html files)"
         task :spelling do
