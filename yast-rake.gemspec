@@ -44,4 +44,5 @@ Gem::Specification.new do |spec|
   # dependencies
   spec.add_dependency("packaging_rake_tasks", ">= 1.1.4")
   spec.add_dependency("rake")
+  spec.metadata["rubygems_mfa_required"] = "true"
 end

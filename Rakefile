@@ -46,7 +46,7 @@ task install: :tarball do
 end
 
 # this gem uses VERSION file, replace the standard yast implementation
-Rake::Task[:'version:bump'].clear
+Rake::Task[:"version:bump"].clear
 
 namespace :version do
   desc "Increase the last part of version in the VERSION and package/*.spec file"

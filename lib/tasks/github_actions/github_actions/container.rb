@@ -75,7 +75,7 @@ module GithubActions
       end
 
       cmd = "docker create #{env_options(ENV_VARIABLES)} --rm --entrypoint " \
-        "#{run} #{options} #{ENV["DOCKER_OPTIONS"]} #{image.shellescape} #{args}"
+            "#{run} #{options} #{ENV["DOCKER_OPTIONS"]} #{image.shellescape} #{args}"
 
       # contains the container ID
       @container = `#{cmd}`.chomp
@@ -103,7 +103,7 @@ module GithubActions
     def run(cmd, env = {})
       stage("Running command: #{cmd}")
       system("docker exec -it #{env_options(env)} #{container.shellescape} " \
-        "sh -c #{cmd.shellescape}")
+             "sh -c #{cmd.shellescape}")
       $CHILD_STATUS.success?
     end
 

@@ -47,7 +47,7 @@ module GithubActions
       def find_job
         job = nil
         Workflow.read.each do |workflow|
-          # Note: in theory the same job name might be used in different files,
+          # NOTE: in theory the same job name might be used in different files,
           # but in YaST we use single YAML files and we can avoid duplicates,
           # simply use the first found and avoid unnecessary complexity
           job = workflow.jobs.find { |j| j.name == name }
