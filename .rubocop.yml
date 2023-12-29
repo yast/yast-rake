@@ -1,9 +1,6 @@
 # use the shared Yast defaults
 inherit_from:
-  /usr/share/YaST2/data/devtools/data/rubocop-0.71.0_yast_style.yml
-
-Metrics/LineLength:
-  Max: 100
+  /usr/share/YaST2/data/devtools/data/rubocop-1.24.1_yast_style.yml
 
 # Offense count: 2
 Metrics/AbcSize:
@@ -17,6 +14,9 @@ Metrics/MethodLength:
 # disable block length due to rake DSL which is build from blocks
 Metrics/BlockLength:
   Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Max: 8
 
 Naming/MethodName:
   Exclude:

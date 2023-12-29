@@ -61,7 +61,7 @@ namespace :test do
     else
       if parallel_tests_wanted?
         warn "WARNING: parallel tests enabled, but 'parallel_rspec' is" \
-        " not installed, falling back to the standard 'rspec' runner."
+             " not installed, falling back to the standard 'rspec' runner."
       end
       run_sequential_tests(files)
     end

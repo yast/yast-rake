@@ -35,8 +35,8 @@ def rubocop_bin
   binary = `/usr/sbin/update-alternatives --list rubocop | grep '#{rubocop_version}'`.strip
   if !system("which #{binary}")
     raise "cannot find proper version of rubocop binary in " \
-      "'/usr/sbin/update-alternatives --list rubocop'." \
-      "If rubocop is installed via gem, define its binary name via env variable RUBOCOP_BIN."
+          "'/usr/sbin/update-alternatives --list rubocop'." \
+          "If rubocop is installed via gem, define its binary name via env variable RUBOCOP_BIN."
   end
   @rubocop_bin = binary
 end
@@ -62,7 +62,7 @@ def run_rubocop(params = "")
     #    b) use -n to set the maximum number of files per process, this number
     #       is computed to equally distribute the files across the workers
     sh "#{rubocop_bin} -L | sort -R | xargs -P`nproc` -n$(expr `#{rubocop_bin} -L | wc -l` / " \
-      "`nproc` + 1) #{rubocop_bin} #{params}"
+       "`nproc` + 1) #{rubocop_bin} #{params}"
   end
 end
 

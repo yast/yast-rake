@@ -75,9 +75,10 @@ private
       workflow.jobs.each do |job|
         container_data = job.container
 
-        if container_data.is_a?(String)
+        case container_data
+        when String
           containers << GithubActions::Container.new(container_data)
-        elsif container_data.is_a?(Hash)
+        when Hash
           # to_s converts missing options (nil) to empty options ("")
           # to treat these as equal in comparison
           containers << GithubActions::Container.new(

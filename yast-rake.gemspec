@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.author  = "Josef Reidinger"
   spec.email = "jreidinger@suse.cz"
   spec.homepage = "https://github.com/yast/yast-rake"
+  spec.required_ruby_version = ">= 2.5.0"
 
   spec.summary = "Rake tasks providing basic work-flow for Yast development"
   spec.description = <<~DESCRIPTION
@@ -44,4 +45,5 @@ Gem::Specification.new do |spec|
   # dependencies
   spec.add_dependency("packaging_rake_tasks", ">= 1.1.4")
   spec.add_dependency("rake")
+  spec.metadata["rubygems_mfa_required"] = "true"
 end

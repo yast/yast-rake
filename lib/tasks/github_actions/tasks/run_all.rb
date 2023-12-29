@@ -94,13 +94,13 @@ module GithubActions
         unsupported = job.unsupported_steps
         if !unsupported.empty?
           warning("WARNING: Skipping job \"#{job.name}\", found " \
-            "unsupported steps: #{unsupported.inspect}")
+                  "unsupported steps: #{unsupported.inspect}")
           return false
         end
 
         if job.container.nil? || job.container.empty?
           warning("WARNING: Skipping job \"#{job.name}\", " \
-            "the Docker container in not specified")
+                  "the Docker container in not specified")
           return false
         end
 

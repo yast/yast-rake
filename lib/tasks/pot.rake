@@ -63,9 +63,9 @@ namespace :check do
   def clean_pot_lines(lines)
     # leave just the text
     lines.each do |line|
-      line.sub!(/^msgid \"/, "")
-      line.sub!(/^\"/, "")
-      line.sub!(/\"$/, "")
+      line.sub!(/^msgid "/, "")
+      line.sub!(/^"/, "")
+      line.sub!(/"$/, "")
     end
   end
 

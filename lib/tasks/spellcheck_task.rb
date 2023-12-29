@@ -40,6 +40,8 @@ module Yast
 
     # define the Rake task in the constructor
     def initialize
+      super
+
       namespace :check do
         desc "Run spell checker (by default for *.md and *.html files)"
         task :spelling do
@@ -109,7 +111,7 @@ module Yast
       return if duplicates.empty?
 
       warn "Warning: Found dictionary duplicates in the local dictionary " \
-        "(#{CUSTOM_SPELL_CONFIG_FILE}):\n"
+           "(#{CUSTOM_SPELL_CONFIG_FILE}):\n"
       duplicates.each { |duplicate| warn "  #{duplicate}" }
       $stderr.puts
     end
@@ -184,7 +186,7 @@ module Yast
         puts "Spelling OK."
       else
         warn "Spellcheck failed! (Fix it or add the words to " \
-          "'#{CUSTOM_SPELL_CONFIG_FILE}' file if it is OK.)"
+             "'#{CUSTOM_SPELL_CONFIG_FILE}' file if it is OK.)"
         exit 1
       end
     end
