@@ -5,9 +5,7 @@ name: CI
 on: [ push, pull_request ]
 
 jobs:
-  # downloading the Docker image takes some time so bundling several fast
-  # checks into one job avoids that overhead
-  Checks:
+  Rubocop:
     runs-on: ubuntu-latest
 
     strategy:
@@ -20,7 +18,25 @@ jobs:
 
     steps:
       - name: Git Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
 
-      - name: Ruby Check
-        run: yast-ci-ruby
+      - name: Rubocop
+        run: rake check:rubocop
+
+  Package:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        distro: [ "tumbleweed" ]
+
+    container:
+      image: registry.opensuse.org/yast/head/containers_${{matrix.distro}}/yast-ruby
+
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v7
+
+      - name: Package Build
+        run: yast-ci-ruby -o package

@@ -32,13 +32,25 @@ def rubocop_bin
   return @rubocop_bin if @rubocop_bin
   return @rubocop_bin = ENV["RUBOCOP_BIN"] if ENV["RUBOCOP_BIN"]
 
-  binary = `/usr/sbin/update-alternatives --list rubocop | grep '#{rubocop_version}'`.strip
-  if !system("which #{binary}")
-    raise "cannot find proper version of rubocop binary in " \
-          "'/usr/sbin/update-alternatives --list rubocop'." \
-          "If rubocop is installed via gem, define its binary name via env variable RUBOCOP_BIN."
+  # first try the old "update-alternatives"
+  if File.executable?("/usr/sbin/update-alternatives")
+    binary = `/usr/sbin/update-alternatives --list rubocop | grep '#{rubocop_version}'`.strip
+
+    return @rubocop_bin = binary if !binary.empty?
   end
-  @rubocop_bin = binary
+
+  # if that did not work try the newer "alts"
+  if File.executable?("/usr/bin/alts")
+    binary = `/usr/bin/alts -l rubocop | grep "Target:" | sed "s/^.*Target:\\s*\\(\\S.*\\)$/\\\\1/"\
+| grep '#{rubocop_version}'`.strip
+
+    return @rubocop_bin = binary if !binary.empty?
+  end
+
+  raise "Cannot find proper version of rubocop binary in " \
+        "'/usr/sbin/update-alternatives --list rubocop' and " \
+        "'/usr/bin/alts -l rubocop'." \
+        "If rubocop is installed via gem, define its binary name via env variable RUBOCOP_BIN."
 end
 
 # run Rubocop in parallel
